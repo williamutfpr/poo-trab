@@ -1,38 +1,25 @@
 import Address from "./Address";
-
 export default class People {
-    id: number;
-    name: string;
-    cpf: string;
-    address: Address;
-    mail: string;
-
-    constructor(id: number, name: string, cpf: string, address: Address, mail: string) {
+    constructor(id, name, cpf, address, mail) {
         this.id = id;
         this.name = name;
         this.cpf = cpf;
         this.address = address;
         this.mail = mail;
     }
-
-    public getName(): string {
+    getName() {
         return this.name;
     }
-
-    public setName(name: string) {
+    setName(name) {
         this.name = name;
     }
-
-    public getCpf(): string {
+    getCpf() {
         return this.cpf;
     }
-
-    public setCpf(cpf: string) {
+    setCpf(cpf) {
         this.cpf = cpf;
     }
-
-    public getAddress(): string {
+    getAddress() {
         return this.address.getEnderecoCompleto();
     }
-
 }

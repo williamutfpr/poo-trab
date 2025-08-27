@@ -17,8 +17,5 @@ evento1.addParticipant();
 
 console.log(evento1.toString());
 */
-
 import MainController from "./controller/MainController";
-
-new MainController()
-
+new MainController();
