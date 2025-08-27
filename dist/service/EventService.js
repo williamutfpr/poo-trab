@@ -1,5 +1,5 @@
 import Event from "../model/Event";
-import Database from "../../db/Database";
+import Database from "../db/Database";
 export default class EventService {
     constructor() {
         this.events = [];

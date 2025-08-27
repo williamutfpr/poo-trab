@@ -1,4 +1,2 @@
 import MainController from "./controller/MainController";
-
-new MainController()
-
+new MainController();

@@ -1,7 +1,7 @@
-import Event from "../src/model/Event";
-import Organizer from "../src/model/Organizer";
-import Participant from "../src/model/Participant";
-import Speaker from "../src/model/Speaker";
+import Event from "../model/Event";
+import Organizer from "../model/Organizer";
+import Participant from "../model/Participant";
+import Speaker from "../model/Speaker";
 export default class Database {
     constructor() {
         this.EventDB = [];
