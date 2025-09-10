@@ -1,25 +1,26 @@
-import type Participant from "./Participant";
-
+import Participant from "./Participant";
+import { StatusEnum } from "../Enum/StatusEnum";
 export default class Event {
     private name: string;
-    private time: string; // hours
+    private time: number;
     private maxParticipants: number;
-    private field: string; // campo
     private list: Participant[];
+    private field: string;
+    private status: StatusEnum
 
-    constructor(name: string,
-                time: string,
-                maxParticipants: number,
-                currentParticipants: number,
-                field: string,
-
-
-    ){
+    constructor(
+        name: string,
+        time: number,
+        maxParticipants: number,
+        field: string,
+        status: StatusEnum
+    ) {
         this.name = name;
-        this.time = time;
+        this.time = time; // minutes
         this.maxParticipants = maxParticipants;
-        this.field = field;
         this.list = [];
+        this.field = field;
+        this.status = status;
     }
 
     public getName(): string {
@@ -29,23 +30,23 @@ export default class Event {
         this.name = name;
     }
 
-    public getTime(): string {
+    public getTime(): number {
         return this.time;
     }
-   public setTime(time: string): void {
+    public setTime(time: number): void {
         this.time = time;
-   }
+    }
 
-   public getMaxParticipants(): number {
+    public getMaxParticipants(): number {
         return this.maxParticipants;
     }
     public setMaxParticipants(maxParticipants: number): void {
         this.maxParticipants = maxParticipants;
     }
 
-     public getCurrentParticipants(): number {
-         return this.list.length;
-     }
+    public getCurrentParticipants(): number {
+        return this.list.length;
+    }
 
     public getField(): string {
         return this.field;
@@ -57,22 +58,16 @@ export default class Event {
     public getList(): Participant[] {
         return this.list;
     }
-    private setList(list: Participant[]): void {
-        this.list = list;
+
+    public getStatus(): StatusEnum {
+        return this.status;
     }
-
-
-    public addParticipant(p: Participant): void {
-        if (this.list.length < this.maxParticipants) {
-            this.list.push(p);
-            console.log(`Participante adicionado ao evento ${this.name} com sucesso!`);
-        } else {
-            console.log( `Não foi possível entrar em ${this.name}, número máximo atingido!`);
-        }
+    public setStatus(status: StatusEnum): void {
+        this.status = status;
     }
-
 
     public toString(): string {
-        return `${this.name} - ${this.time.toLocaleString()} | Participantes: ${this.list.length}/${this.maxParticipants}`;
+        return `${this.name} - ${this.time.toLocaleString()} | Participantes: ${this.list.length
+            }/${this.maxParticipants}`;
     }
 }

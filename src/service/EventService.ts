@@ -1,15 +1,17 @@
 import Event from "../model/Event";
 import Database from "../db/Database";
-import type Participant from "../model/Participant";
+import Participant from "../model/Participant";
+import IEvent from "../interfaces/IEvent";
+import { StatusEnum } from "../Enum/StatusEnum";
 
 
-export default class EventService {
+export default class EventService  implements IEvent {
     private events: Event[] = [];
 
-    public createEvent(name: string, time: string, maxParticipants: number,currentParticipants: number, field: string): Event {
-        const event = new Event(name, time, maxParticipants,currentParticipants, field);
+    public createEvent(name: string, time: number, maxParticipants: number, field: string, status: StatusEnum): Event {
+        const event = new Event(name, time, maxParticipants, field,status);
         this.events.push(event);
-        return event;
+        return event;                                                       
     }
 
     public listEvents(): Event[] {
@@ -17,7 +19,11 @@ export default class EventService {
     }
 
     public addParticipant(database: Database,participant: Participant): void {
-        const p = database.insertNewParticipant(participant)
-        return p;
+        return  database.insertNewParticipant(participant)
+    }
+
+    public removeParticipant(database: Database, participant: Participant): boolean {
+    return database.removeParticipant(participant);
+
     }
 }

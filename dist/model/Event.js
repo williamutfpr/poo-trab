@@ -1,10 +1,19 @@
-export default class Event {
-    constructor(name, time, maxParticipants, currentParticipants, field) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class Event {
+    name;
+    time;
+    maxParticipants;
+    list;
+    field;
+    status;
+    constructor(name, time, maxParticipants, field, status) {
         this.name = name;
-        this.time = time;
+        this.time = time; // minutes
         this.maxParticipants = maxParticipants;
-        this.field = field;
         this.list = [];
+        this.field = field;
+        this.status = status;
     }
     getName() {
         return this.name;
@@ -36,19 +45,14 @@ export default class Event {
     getList() {
         return this.list;
     }
-    setList(list) {
-        this.list = list;
+    getStatus() {
+        return this.status;
     }
-    addParticipant(p) {
-        if (this.list.length < this.maxParticipants) {
-            this.list.push(p);
-            console.log(`Participante adicionado ao evento ${this.name} com sucesso!`);
-        }
-        else {
-            console.log(`Não foi possível entrar em ${this.name}, número máximo atingido!`);
-        }
+    setStatus(status) {
+        this.status = status;
     }
     toString() {
         return `${this.name} - ${this.time.toLocaleString()} | Participantes: ${this.list.length}/${this.maxParticipants}`;
     }
 }
+exports.default = Event;

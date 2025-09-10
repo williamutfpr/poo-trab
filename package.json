@@ -1,13 +1,19 @@
 {
-  "name": "eventos",
-  "version": "1.0.0",
-  "description": "sistema_de_gestão_de_eventos",
-  "license": "ISC",
-  "author": "",
-  "type": "module",
-  "main": "index.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "module": "nodenext",
+    "target": "esnext",
+    "types": [],
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "strict": true,
+    "jsx": "react-jsx",
+    "verbatimModuleSyntax": false,
+    "isolatedModules": true,
+    "noUncheckedSideEffectImports": true,
+    "moduleDetection": "force",
+    "skipLibCheck": true
   },
   "devDependencies": {
     "@types/node": "^24.3.0",

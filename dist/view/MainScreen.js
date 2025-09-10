@@ -1,32 +1,43 @@
-import promptSync from 'prompt-sync';
-import ParticipantView from "./ParticipantView";
-const prompt = promptSync();
-export default class MainScreen {
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const prompt_sync_1 = __importDefault(require("prompt-sync"));
+const ParticipantView_1 = __importDefault(require("./ParticipantView"));
+const OrganizerView_1 = __importDefault(require("./OrganizerView"));
+const SpeakerView_1 = __importDefault(require("./SpeakerView"));
+const EventView_1 = __importDefault(require("./EventView"));
+const prompt = (0, prompt_sync_1.default)();
+class MainScreen {
     constructor() {
         this.mainMenu();
-    }
-    limparConsole() {
-        process.stdout.write('\x1B[2J\x1B[H');
     }
     mainMenu() {
         let continuar = true;
         while (continuar) {
-            this.limparConsole();
             console.log("===============================");
             console.log("    MENU     ");
             console.log("===============================");
             console.log("1. Configure Participant");
             console.log("2. Configure Organizer");
-            console.log("3. Configure Organizador");
+            console.log("3. Configure Speaker");
             console.log("4. Configure Event");
             console.log("5. Exit");
             console.log("===============================");
             const escolha = prompt("Escolha uma opção: ");
             switch (escolha) {
                 case '1':
-                    new ParticipantView();
+                    new ParticipantView_1.default();
                     break;
                 case '2':
+                    new OrganizerView_1.default();
+                    break;
+                case '3':
+                    new SpeakerView_1.default();
+                    break;
+                case '4':
+                    new EventView_1.default();
                     break;
                 case '5':
                     continuar = false;
@@ -38,3 +49,4 @@ export default class MainScreen {
         }
     }
 }
+exports.default = MainScreen;

@@ -1,40 +1,41 @@
-import promptSync from 'prompt-sync';
-const prompt = promptSync();
-export default class ParticipantView {
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const prompt_sync_1 = __importDefault(require("prompt-sync"));
+const prompt = (0, prompt_sync_1.default)();
+class ParticipantView {
     constructor() {
         this.mainMenu();
-    }
-    limparConsole() {
-        process.stdout.write('\x1B[2J\x1B[H');
     }
     mainMenu() {
         let continuar = true;
         while (continuar) {
-            this.limparConsole();
             console.log("===============================");
             console.log("    MENU     ");
             console.log("===============================");
             console.log("1. Create Participant");
             console.log("2. Delete Participant");
-            console.log("3. Create Organizador");
-            console.log("4. Create Event");
             console.log("5. Exit");
             console.log("===============================");
             const escolha = prompt("Escolha uma opção: ");
             switch (escolha) {
                 case '1':
-                    this.limparConsole();
                     console.log("You chose Create Participant");
                     break;
                 case '2':
-                case '5':
+                    break;
+                case '3':
+                    break;
+                case '4':
                     continuar = false;
                     break;
                 default:
-                    this.limparConsole();
                     console.log("Opção inválida. Tente novamente.\n");
                     break;
             }
         }
     }
 }
+exports.default = ParticipantView;

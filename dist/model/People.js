@@ -1,5 +1,11 @@
-import Address from "./Address";
-export default class People {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class People {
+    id;
+    name;
+    cpf;
+    address;
+    mail;
     constructor(id, name, cpf, address, mail) {
         this.id = id;
         this.name = name;
@@ -23,3 +29,4 @@ export default class People {
         return this.address.getEnderecoCompleto();
     }
 }
+exports.default = People;

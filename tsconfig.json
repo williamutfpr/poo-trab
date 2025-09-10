@@ -2,31 +2,25 @@
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
     // File Layout
- "module": "ESNext",   // ou "NodeNext"
-    "target": "ES2020",   // ou superior
+    "rootDir": "./src",
     "outDir": "./dist",
-    "types": ["node"],
-
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-
+    "module": "nodenext",
+    "target": "esnext",
+    "types": ["node"],
 
     // For nodejs:
     // "lib": ["esnext"],
-
     // "types": ["node"],
-    "types": ["node"],
-
     // and npm install -D @types/node
 
-    /* Other Outputs
+    // Other Outputs
+    //"sourceMap": true,
+    //"declaration": true,
+    //"declarationMap": true,
 
-    "sourceMap": true,
-    "declaration": true,
-    "declarationMap": true,
-
-    */
     // Stricter Typechecking Options
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
@@ -41,14 +35,11 @@
 
     // Recommended Options
     "strict": true,
-    "esModuleInterop": true,
     "jsx": "react-jsx",
-    "verbatimModuleSyntax": true,
+    "verbatimModuleSyntax": false,
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
-  },
-  "include": ["src/**/*"]
-
+  }
 }

@@ -1,4 +1,11 @@
-export default class Address {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class Address {
+    rua;
+    numero;
+    city;
+    state;
+    cep;
     constructor(rua, numero, city, state, cep) {
         this.rua = rua;
         this.numero = numero;
@@ -42,3 +49,4 @@ export default class Address {
         return `${this.rua}, ${this.numero} - ${this.city}/${this.state} - CEP: ${this.cep}`;
     }
 }
+exports.default = Address;

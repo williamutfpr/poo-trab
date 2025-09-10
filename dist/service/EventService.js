@@ -1,11 +1,13 @@
-import Event from "../model/Event";
-import Database from "../db/Database";
-export default class EventService {
-    constructor() {
-        this.events = [];
-    }
-    createEvent(name, time, maxParticipants, currentParticipants, field) {
-        const event = new Event(name, time, maxParticipants, currentParticipants, field);
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const Event_1 = __importDefault(require("../model/Event"));
+class EventService {
+    events = [];
+    createEvent(name, time, maxParticipants, field, status) {
+        const event = new Event_1.default(name, time, maxParticipants, field, status);
         this.events.push(event);
         return event;
     }
@@ -13,7 +15,10 @@ export default class EventService {
         return this.events;
     }
     addParticipant(database, participant) {
-        const p = database.insertNewParticipant(participant);
-        return p;
+        return database.insertNewParticipant(participant);
+    }
+    removeParticipant(database, participant) {
+        return database.removeParticipant(participant);
     }
 }
+exports.default = EventService;
