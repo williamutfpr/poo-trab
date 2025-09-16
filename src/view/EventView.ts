@@ -3,6 +3,8 @@ import promptSync from 'prompt-sync';
 import Database from '../db/Database';
 import { StatusEnum } from '../Enum/StatusEnum';
 import MainController from '../controller/MainController';
+import Address from '../model/Address';
+import Organizer from '../model/Organizer';
 
 const prompt = promptSync();
 
@@ -10,14 +12,14 @@ export default class EventView {
     private mainController: MainController;
     private database: Database;
 
-    constructor() {
+    constructor(mainController: MainController) {
+        this.mainController = mainController;
+        this.database = Database.getInstance();
         this.mainMenu();
-        this.database = Database.getInstance();  
-        this.mainController = new MainController();
-        
     }
 
     private mainMenu(): void {
+
         let continuar = true;
 
         while (continuar) {
@@ -39,13 +41,21 @@ export default class EventView {
                     const time = parseInt(prompt('Time in minutes for event: '));
                     const max = parseInt(prompt('Max participant number: '));
                     const field = prompt('Field: ');
-                    const status = StatusEnum.UM
+                    const status = StatusEnum.TRES
 
+                    const rua = prompt('Rua name: ');
+                    const numero = parseInt(prompt('numero name: '));
+                    const city = prompt('city name: ');
+                    const state = prompt('state name: ');
+                    const cep = prompt('cep name: ');
+                    const organizer = new Organizer(1,"William","1234567890","TI","exemple@gmail.com") // mudar n pode ter new
+
+                    const address = new Address(rua,numero,city,state,cep)
                     const event = this.mainController.ec
                         .getNewEventService()
-                        .createEvent(name, time, max, field, status);
-                    
-                        this.database.insertNewEvent(event);
+                        .createEvent(name, time, max, field, status, address, organizer);
+
+                    this.database.insertNewEvent(event);
 
                     console.log("Event created successfully!");
                     break;
@@ -59,7 +69,7 @@ export default class EventView {
                     break;
 
                 case '4':
-                    continuar = false;
+                    continuar = false
                     break;
 
                 default:

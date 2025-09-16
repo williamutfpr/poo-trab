@@ -4,8 +4,8 @@ import Address from "./Address";
 export default class Organizer extends People {
   private sector: string; // setor (TI,Pscico,Nutri ...)
 
-  constructor(id:number, name: string, cpf: string, endereco: Address, sector: string, mail: string) {
-    super(id, name, cpf, endereco,mail);
+  constructor(id:number, name: string, cpf: string, sector: string, mail: string) {
+    super(id, name, cpf,mail);
     this.sector = sector;
   }
 

@@ -1,11 +1,10 @@
 import People from "./People";
-import Address from "./Address";
 
 export default class Participant extends People {
   private enrollmentId: number; // inscrição
 
-  constructor(id:number , name: string, cpf: string, endereco: Address, enrollmentId: number, mail: string) {
-    super(id,name, cpf, endereco, mail);
+  constructor(id:number , name: string, cpf: string, enrollmentId: number, mail: string) {
+    super(id,name, cpf, mail);
     this.enrollmentId = enrollmentId;
   }
 

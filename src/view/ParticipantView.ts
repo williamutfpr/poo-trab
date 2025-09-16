@@ -29,7 +29,7 @@ export default class ParticipantView {
             switch (escolha) {
                 case '1':
                     console.log("You chose Create Participant");
-
+                    
                     break;
                 case '2':
                     

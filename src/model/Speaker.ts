@@ -1,11 +1,10 @@
 import People from "./People";
-import Address from "./Address";
 
 export default class Speaker extends People {
   private practice_area: string;
 
-  constructor(id:number, name: string, cpf: string, address: Address, practice_area: string , mail: string) {
-    super(id, name, cpf, address, mail);
+  constructor(id:number, name: string, cpf: string,  practice_area: string , mail: string) {
+    super(id, name, cpf, mail);
       this.practice_area = practice_area;
   }
 

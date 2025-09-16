@@ -4,15 +4,15 @@ import Database from "../db/Database";
 
 export default class MainController {
 
-    public db: Database = new Database(); 
-    public ec: EventController = new EventController(); 
+    public db: Database = new Database();
+    public ec: EventController = new EventController();
 
     constructor() {
-         this.db = Database.getInstance();
+        this.db = Database.getInstance();
         this.ec = new EventController();
-        
-        new MainScreen();
     }
 
-
+    public start(): void {
+        new MainScreen(this); 
+    }
 }
