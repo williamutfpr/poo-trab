@@ -6,8 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const People_1 = __importDefault(require("./People"));
 class Organizer extends People_1.default {
     sector; // setor (TI,Pscico,Nutri ...)
-    constructor(id, name, cpf, endereco, sector, mail) {
-        super(id, name, cpf, endereco, mail);
+    constructor(id, name, cpf, sector, mail) {
+        super(id, name, cpf, mail);
         this.sector = sector;
     }
     getSector() {

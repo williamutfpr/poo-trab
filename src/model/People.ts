@@ -1,3 +1,4 @@
+import { randomInt } from "crypto";
 
 
 export default class People {
@@ -11,6 +12,14 @@ export default class People {
         this.name = name;
         this.cpf = cpf;
         this.mail = mail;
+    }
+
+    public getId(): number {
+        return this.id;
+    }
+
+    public static setId(): number {
+        return randomInt(1, 100000000);
     }
 
     public getName(): string {
@@ -29,8 +38,11 @@ export default class People {
         this.cpf = cpf;
     }
 
-    // public getAddress(): string {
-    //     return this.address.getEnderecoCompleto();
-    // }
+    public getMail(): string {
+        return this.mail;
+    }
 
+    public setMail(mail: string) {
+        this.mail = mail;
+    }
 }

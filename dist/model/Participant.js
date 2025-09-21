@@ -1,17 +1,32 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const People_1 = __importDefault(require("./People"));
-class Participant extends People_1.default {
-    enrollmentId; // inscrição
-    constructor(id, name, cpf, endereco, enrollmentId, mail) {
-        super(id, name, cpf, endereco, mail);
+class Participant {
+    id;
+    name;
+    cpf;
+    mail;
+    enrollmentId;
+    constructor(id, name, cpf, mail, enrollmentId) {
+        this.id = id;
+        this.name = name;
+        this.cpf = cpf;
+        this.mail = mail;
         this.enrollmentId = enrollmentId;
     }
-    getInscricaoId() {
-        return this.enrollmentId;
+    getId() {
+        return this.id;
+    }
+    getName() {
+        return this.name;
+    }
+    getCpf() {
+        return this.cpf;
+    }
+    getMail() {
+        return this.mail;
+    }
+    getEnrollmentId() {
+        return this.enrollmentId; // ✅ retorna o valor real
     }
 }
 exports.default = Participant;

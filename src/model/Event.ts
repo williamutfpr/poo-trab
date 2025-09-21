@@ -1,10 +1,15 @@
-import { StatusEnum } from "../Enum/StatusEnum";
+import { StatusEnum } from "../Enum/StatusEventEnum";
 import Address from "./Address";
 import Speaker from "./Speaker";
 import Participant from "./Participant";
 import Organizer from "./Organizer";
+import { TypeEventEnum } from "../Enum/TypeEventEnum";
 
-export default class Event {
+import { randomInt } from "crypto";
+
+export abstract class Event {
+    private id: number;
+    private type: TypeEventEnum;
     private name: string;
     private time: number;
     private maxParticipants: number;
@@ -15,16 +20,21 @@ export default class Event {
 
     private field: string;
     private status: StatusEnum;
-    private address: Address;
+
+    address?: Address;
+    link?: string;
 
     constructor(
+        id: number,
+        type: TypeEventEnum,
         name: string,
         time: number,
         maxParticipants: number,
         field: string,
         status: StatusEnum,
-        address: Address,
     ) {
+        this.id = id;
+        this.type = type;
         this.name = name;
         this.time = time; // minutes
         this.maxParticipants = maxParticipants;
@@ -33,7 +43,23 @@ export default class Event {
         this.listO = [];
         this.field = field;
         this.status = status;
-        this.address = address;
+    }
+
+    // --- id ---
+    public getId(): number {
+        return this.id;
+    }
+
+    public static setId(): number {
+        return randomInt(1, 100000000);
+    }
+
+    // --- Types ---
+    public getType(): TypeEventEnum {
+        return this.type;
+    }
+    public setType(type: TypeEventEnum): void {
+        this.type = type;
     }
 
     // --- Name ---
@@ -81,11 +107,19 @@ export default class Event {
     }
 
     // --- Address ---
-    public getAddress(): Address {
+    public getAddress(): Address | undefined {
         return this.address;
     }
     public setAddress(address: Address): void {
         this.address = address;
+    }
+
+    // --- Address ---
+    public getLink(): string | undefined {
+        return this.link;
+    }
+    public setLink(link: string): void {
+        this.link = link;
     }
 
     // --- Participants ---
@@ -93,7 +127,7 @@ export default class Event {
         return this.listP;
     }
 
-    public addParticipant(p: Participant): boolean {
+    public  addParticipant(p: Participant): boolean {
         if (this.listP.length < this.maxParticipants && !this.listP.includes(p)) {
             this.listP.push(p);
             return true;

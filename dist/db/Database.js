@@ -1,33 +1,21 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const OnSiteEvent_1 = require("../model/OnSiteEvent");
+const AsyncEvent_1 = require("../model/AsyncEvent");
 class Database {
     static instance;
-    events = [];
     organizers = [];
+    events = [];
     participants = [];
     speakers = [];
+    constructor() { }
     static getInstance() {
         if (!Database.instance) {
             Database.instance = new Database();
         }
         return Database.instance;
     }
-    // --- Event ---
-    insertNewEvent(event) {
-        this.events.push(event);
-    }
-    getAllEvents() {
-        return this.events;
-    }
-    removeEvent(event) {
-        const index = this.events.indexOf(event);
-        if (index !== -1) {
-            this.events.splice(index, 1);
-            return true;
-        }
-        return false;
-    }
-    // --- Organizer ---
+    // --- Organizers ---
     insertNewOrganizer(organizer) {
         this.organizers.push(organizer);
     }
@@ -42,35 +30,51 @@ class Database {
         }
         return false;
     }
-    // --- Participant ---
-    insertNewParticipant(participant) {
-        this.participants.push(participant);
+    // --- Events ---
+    insertNewEvent(event) {
+        this.events.push(event);
+    }
+    getAllEvents() {
+        return this.events;
+    }
+    removeEvent(event) {
+        const index = this.events.indexOf(event);
+        if (index !== -1) {
+            this.events.splice(index, 1);
+            return true;
+        }
+        return false;
+    }
+    // --- Participants ---
+    createNewParticipant(p) {
+        this.participants.push(p);
+    }
+    // removeParticipant(p: Participant): void {
+    //     this.participants = this.participants.filter(x => x !== p);
+    // }
+    insertParticipantInEvent(e, p) {
+        // exemplo de lógica simples:
+        if (e instanceof AsyncEvent_1.AsyncEvent) {
+            e.addParticipant(p);
+            return e; // AsyncEvent
+        }
+        else if (e instanceof OnSiteEvent_1.OnSiteEvent) {
+            e.addParticipant(p);
+            return e; // OnSiteEvent
+        }
+        else {
+            throw new Error("Tipo de evento não suportado");
+        }
     }
     getAllParticipants() {
         return this.participants;
     }
-    removeParticipant(participant) {
-        const index = this.participants.indexOf(participant);
-        if (index !== -1) {
-            this.participants.splice(index, 1);
-            return true;
-        }
-        return false;
+    // --- Speakers ---
+    insertNewSpeaker(s) {
+        this.speakers.push(s);
     }
-    // --- Speaker ---
-    insertNewSpeaker(speaker) {
-        this.speakers.push(speaker);
-    }
-    getAllSpeakers() {
-        return this.speakers;
-    }
-    removeSpeaker(speaker) {
-        const index = this.speakers.indexOf(speaker);
-        if (index !== -1) {
-            this.speakers.splice(index, 1);
-            return true;
-        }
-        return false;
+    removeSpeaker(s) {
+        this.speakers = this.speakers.filter(x => x !== s);
     }
 }
 exports.default = Database;

@@ -6,8 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const People_1 = __importDefault(require("./People"));
 class Speaker extends People_1.default {
     practice_area;
-    constructor(id, name, cpf, address, practice_area, mail) {
-        super(id, name, cpf, address, mail);
+    constructor(id, name, cpf, practice_area, mail) {
+        super(id, name, cpf, mail);
         this.practice_area = practice_area;
     }
     getPractice_area() {

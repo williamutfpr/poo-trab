@@ -10,7 +10,9 @@ const SpeakerView_1 = __importDefault(require("./SpeakerView"));
 const EventView_1 = __importDefault(require("./EventView"));
 const prompt = (0, prompt_sync_1.default)();
 class MainScreen {
-    constructor() {
+    mainController;
+    constructor(mainController) {
+        this.mainController = mainController;
         this.mainMenu();
     }
     mainMenu() {
@@ -28,16 +30,16 @@ class MainScreen {
             const escolha = prompt("Escolha uma opção: ");
             switch (escolha) {
                 case '1':
-                    new ParticipantView_1.default();
+                    new ParticipantView_1.default(this.mainController);
                     break;
                 case '2':
-                    new OrganizerView_1.default();
+                    new OrganizerView_1.default(this.mainController);
                     break;
                 case '3':
-                    new SpeakerView_1.default();
+                    new SpeakerView_1.default(this.mainController);
                     break;
                 case '4':
-                    new EventView_1.default();
+                    new EventView_1.default(this.mainController);
                     break;
                 case '5':
                     continuar = false;
