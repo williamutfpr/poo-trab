@@ -45,4 +45,8 @@ export default class People {
     public setMail(mail: string) {
         this.mail = mail;
     }
+
+    public welcome(){
+        console.log("welcome")
+    }
 }

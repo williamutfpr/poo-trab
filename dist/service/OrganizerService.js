@@ -11,6 +11,7 @@ const Database_1 = __importDefault(require("../db/Database"));
 const Address_1 = __importDefault(require("../model/Address"));
 class OrganizerService {
     db = Database_1.default.getInstance();
+    speakers = [];
     // --- Organizer ---
     createOrganizer(id, name, cpf, sector, email) {
         const organizer = new Organizer_1.default(id, name, cpf, sector, email);
@@ -48,6 +49,14 @@ class OrganizerService {
     // --- Address helper ---
     createAddress(rua, numero, city, state, zip) {
         return new Address_1.default(rua, numero, city, state, zip);
+    }
+    searchSpeaker(criteria) {
+        if (typeof criteria === 'string') {
+            return this.speakers.filter(s => s.getName().includes(criteria));
+        }
+        else {
+            return this.speakers.filter(s => s.getId() === criteria);
+        }
     }
 }
 exports.default = OrganizerService;

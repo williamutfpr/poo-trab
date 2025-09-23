@@ -7,5 +7,9 @@ class OnSiteEvent extends Event_1.Event {
         super(id, type, name, time, maxParticipants, field, status);
         this.address = address;
     }
+    // sobrecarga
+    static getEvent() {
+        console.log("This is in-person event");
+    }
 }
 exports.OnSiteEvent = OnSiteEvent;

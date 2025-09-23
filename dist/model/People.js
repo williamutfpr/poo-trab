@@ -36,5 +36,8 @@ class People {
     setMail(mail) {
         this.mail = mail;
     }
+    welcome() {
+        console.log("welcome");
+    }
 }
 exports.default = People;

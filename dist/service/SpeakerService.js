@@ -12,5 +12,8 @@ class SpeakerService {
         this.db.createNewSpeaker(speaker);
         return speaker;
     }
+    listSpeakers() {
+        this.db.getAllSpeakers();
+    }
 }
 exports.default = SpeakerService;

@@ -6,21 +6,21 @@ import Database from "../db/Database";
 import Address from "../model/Address";
 import { StatusEnum } from "../Enum/StatusEventEnum";
 import { TypeEventEnum } from "../Enum/TypeEventEnum";
-import {IOrganizer} from "../interfaces/IOrganizer";
-import {Event} from "../model/Event";
+import { IOrganizer } from "../interfaces/IOrganizer";
+import { Event } from "../model/Event";
 import Speaker from "../model/Speaker";
-import { ECDH } from "crypto";
 
-export default class OrganizerService implements  IOrganizer{
+export default class OrganizerService implements IOrganizer {
   private db = Database.getInstance();
+  private speakers: Speaker[] = [];
 
   // --- Organizer ---
   public createOrganizer(
-      id: number,
-      name: string,
-      cpf: string,
-      sector: string,
-      email: string
+    id: number,
+    name: string,
+    cpf: string,
+    sector: string,
+    email: string
   ): Organizer {
     const organizer = new Organizer(id, name, cpf, sector, email);
     this.db.insertNewOrganizer(organizer);
@@ -59,14 +59,14 @@ export default class OrganizerService implements  IOrganizer{
   }
 
   public addSpeakerInEvent(
-      event: Event,
-      speaker: Speaker
-  ) : Event | Speaker {
-      this.db.insertSpeakerInEvent(event, speaker);
-      return event;
+    event: Event,
+    speaker: Speaker
+  ): Event | Speaker {
+    this.db.insertSpeakerInEvent(event, speaker);
+    return event;
   }
 
-    public removeEvent(event: AsyncEvent | OnSiteEvent) {
+  public removeEvent(event: AsyncEvent | OnSiteEvent) {
     return this.db.removeEvent(event);
   }
 
@@ -76,12 +76,26 @@ export default class OrganizerService implements  IOrganizer{
 
   // --- Address helper ---
   public createAddress(
-      rua: string,
-      numero: number,
-      city: string,
-      state: string,
-      zip: string
+    rua: string,
+    numero: number,
+    city: string,
+    state: string,
+    zip: string
   ): Address {
     return new Address(rua, numero, city, state, zip);
+  }
+
+  searchSpeaker(name: string): Speaker[];
+  searchSpeaker(id: number): Speaker[]
+
+  searchSpeaker(
+    criteria: string | number
+  ): Speaker[] {
+    if (typeof criteria === 'string') {
+      return this.speakers.filter(s => s.getName().includes(criteria));
+    }
+    else {
+      return this.speakers.filter(s => s.getId() === criteria);
+    }
   }
 }

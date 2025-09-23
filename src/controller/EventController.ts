@@ -31,13 +31,8 @@ export default class EventController {
   //   this.service.removeParticipant(participant, event);
   // }
 
-  // --- Speakers ---
-  public addSpeaker(speaker: Speaker, event: Event): void {
-    this.service.addSpeaker(speaker, event);
-  }
-
-  public removeSpeaker(speaker: Speaker, event: Event): void {
-    this.service.removeSpeaker(speaker, event);
-  }
+  public searchEvent(option: any) {
+    this.service.searchEvent(option)
+  };
 
 }

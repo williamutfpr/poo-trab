@@ -12,7 +12,7 @@ import { Event } from '../model/Event';
 import { TypeEventEnum } from '../Enum/TypeEventEnum';
 
 const prompt = promptSync();
-
+let option: string | StatusEnum
 export default class EventView {
     private mainController: MainController;
     private database: Database;
@@ -33,7 +33,8 @@ export default class EventView {
             console.log("1. Create Event");
             console.log("2. Delete Event");
             console.log("3. List Events");
-            console.log("4. Exit");
+            console.log("4. Search Event")
+            console.log("5. Exit");
             console.log("===============================");
 
             const escolha = prompt("Escolha uma opção: ");
@@ -52,6 +53,9 @@ export default class EventView {
                     break;
 
                 case '4':
+                    this.searchEvent();
+                    break;
+                case '5':
                     continuar = false;
                     console.log("👋 Goodbye!");
                     break;
@@ -170,6 +174,42 @@ export default class EventView {
             }
         }
         )
-        console.log();
+    }
+
+    private searchEvent(): void {
+        let continuar = true;
+
+        while (continuar = true) {
+            console.log("Search Event")
+            console.log("You prefere:")
+            console.log("1. Name")
+            console.log("2. Status")
+
+            const op1 = prompt("Chose your option with 1 or 2")
+            switch (op1) {
+                case "1":
+                    const name = prompt("Search Name:")
+                    this.mainController.ec.searchEvent(name)
+                    break
+                case "2":
+                    console.log("1. completed")
+                    console.log("2. in progress")
+                    console.log("3. not started")
+
+                    const op1 = prompt("chose a option")
+
+                    switch (op1) {
+                        case "1":
+                            this.mainController.ec.searchEvent(StatusEnum.CP)
+                            break
+                        case "2":
+                            this.mainController.ec.searchEvent(StatusEnum.IP)
+                            break
+                        case "3":
+                            this.mainController.ec.searchEvent(StatusEnum.NT)
+                            break
+                    }
+            }
+        }
     }
 }

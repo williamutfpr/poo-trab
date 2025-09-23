@@ -57,19 +57,16 @@ export default class EventService implements IEvent {
 
     // sobrescrita
     searchEvent(name: string): Event[];
-    searchEvent(date: Date): Event[];
     searchEvent(status: StatusEnum): Event[];
 
     searchEvent(
-        criteria: string | Date | StatusEnum 
+        criteria: string | StatusEnum
     ): Event[] {
         if (typeof criteria === 'string') {
             return this.events.filter(e => e.getName().includes(criteria));
         }
-        if (criteria instanceof Date) {
-            return this.events.filter(e => e.getTime() === criteria.getTime());
+        else {
+            return this.events.filter(e => e.getStatus === criteria);
         }
-        // StatusEnum
-        return this.events.filter(e => e.getStatus === criteria);
-    }   
+    }
 }

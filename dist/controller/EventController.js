@@ -22,12 +22,9 @@ class EventController {
     // public removeParticipant(participant: Participant, event: Event): void {
     //   this.service.removeParticipant(participant, event);
     // }
-    // --- Speakers ---
-    addSpeaker(speaker, event) {
-        this.service.addSpeaker(speaker, event);
+    searchEvent(option) {
+        this.service.searchEvent(option);
     }
-    removeSpeaker(speaker, event) {
-        this.service.removeSpeaker(speaker, event);
-    }
+    ;
 }
 exports.default = EventController;

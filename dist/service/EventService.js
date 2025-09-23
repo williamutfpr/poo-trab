@@ -44,5 +44,13 @@ class EventService {
             this.db.removeSpeaker(speaker);
         }
     }
+    searchEvent(criteria) {
+        if (typeof criteria === 'string') {
+            return this.events.filter(e => e.getName().includes(criteria));
+        }
+        else {
+            return this.events.filter(e => e.getStatus === criteria);
+        }
+    }
 }
 exports.default = EventService;

@@ -79,6 +79,9 @@ class Database {
     removeSpeaker(s) {
         this.speakers = this.speakers.filter(x => x !== s);
     }
+    getAllSpeakers() {
+        return this.speakers;
+    }
     insertSpeakerInEvent(e, s) {
         e.addSpeaker(s);
     }

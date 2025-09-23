@@ -92,6 +92,10 @@ export default class Database {
         this.speakers = this.speakers.filter(x => x !== s);
     }
 
+    getAllSpeakers(): Speaker[] {
+        return this.speakers;
+    }
+
     insertSpeakerInEvent(e: Event, s: Speaker): void {
         e.addSpeaker(s)
     }

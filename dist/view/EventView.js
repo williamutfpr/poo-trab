@@ -11,6 +11,7 @@ const AsyncEvent_1 = require("../model/AsyncEvent");
 const Event_1 = require("../model/Event");
 const TypeEventEnum_1 = require("../Enum/TypeEventEnum");
 const prompt = (0, prompt_sync_1.default)();
+let option;
 class EventView {
     mainController;
     database;
@@ -28,7 +29,8 @@ class EventView {
             console.log("1. Create Event");
             console.log("2. Delete Event");
             console.log("3. List Events");
-            console.log("4. Exit");
+            console.log("4. Search Event");
+            console.log("5. Exit");
             console.log("===============================");
             const escolha = prompt("Escolha uma opção: ");
             switch (escolha) {
@@ -42,6 +44,9 @@ class EventView {
                     this.listEventsMenu();
                     break;
                 case '4':
+                    this.searchEvent();
+                    break;
+                case '5':
                     continuar = false;
                     console.log("👋 Goodbye!");
                     break;
@@ -68,11 +73,13 @@ class EventView {
         let type;
         let event;
         if (typeOption === '1') {
+            AsyncEvent_1.AsyncEvent.getEvent();
             type = TypeEventEnum_1.TypeEventEnum.EAD;
             const link = prompt('Meeting link: ');
             event = this.mainController.oc.createEvent(id, type, name, time, max, field, status, link);
         }
         else if (typeOption === '2') {
+            OnSiteEvent_1.OnSiteEvent.getEvent();
             type = TypeEventEnum_1.TypeEventEnum.PRESENCIAL;
             console.log("\n📍 Event Address:");
             const rua = prompt('Street name: ');
@@ -131,7 +138,38 @@ class EventView {
                 }
             }
         });
-        console.log();
+    }
+    searchEvent() {
+        let continuar = true;
+        while (continuar = true) {
+            console.log("Search Event");
+            console.log("You prefere:");
+            console.log("1. Name");
+            console.log("2. Status");
+            const op1 = prompt("Chose your option with 1 or 2");
+            switch (op1) {
+                case "1":
+                    const name = prompt("Search Name:");
+                    this.mainController.ec.searchEvent(name);
+                    break;
+                case "2":
+                    console.log("1. completed");
+                    console.log("2. in progress");
+                    console.log("3. not started");
+                    const op1 = prompt("chose a option");
+                    switch (op1) {
+                        case "1":
+                            this.mainController.ec.searchEvent(StatusEventEnum_1.StatusEnum.CP);
+                            break;
+                        case "2":
+                            this.mainController.ec.searchEvent(StatusEventEnum_1.StatusEnum.IP);
+                            break;
+                        case "3":
+                            this.mainController.ec.searchEvent(StatusEventEnum_1.StatusEnum.NT);
+                            break;
+                    }
+            }
+        }
     }
 }
 exports.default = EventView;

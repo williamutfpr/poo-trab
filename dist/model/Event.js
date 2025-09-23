@@ -150,5 +150,9 @@ class Event {
         }
         return false;
     }
+    // sobrecarfga
+    getEvent() {
+        console.log("This is a hybrid event");
+    }
 }
 exports.Event = Event;

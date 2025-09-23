@@ -24,9 +24,8 @@ export default class OrganizerView {
       console.log("You chose Organize console");
       console.log("1. Create Organizer");
       console.log("2. List Organizer");
-      console.log("3. Delete Organizer");
-      console.log("4. Add Speaker on event");
-      console.log("5. Return")
+      console.log("3. Add Speaker on event");
+      console.log("4. Return")
     }
 
     let choice = prompt("Chose a option");
@@ -40,13 +39,10 @@ export default class OrganizerView {
         break
 
       case "3":
-        this.deleteOrganizerMenu();
+        this.AddSpeakerOnEvent();
         break
+
       case "4":
-
-        break
-
-      case "5":
         console.log("back");
         break
 
@@ -87,11 +83,8 @@ export default class OrganizerView {
     });
   }
 
-  public deleteOrganizerMenu(): void {
-
-  }
-
-  public AddSpeakerOnEvent(e: Event, s: Speaker): void {
-    this.mainController.oc.addSpeakerinEvent(e,s)
+  public AddSpeakerOnEvent(): void {
+    this.mainController.ec
+    // this.mainController.oc.addSpeakerinEvent(e,s)
   }
 }
