@@ -6,12 +6,22 @@ import Database from "../db/Database";
 import Address from "../model/Address";
 import { StatusEnum } from "../Enum/StatusEventEnum";
 import { TypeEventEnum } from "../Enum/TypeEventEnum";
+import {IOrganizer} from "../interfaces/IOrganizer";
+import {Event} from "../model/Event";
+import Speaker from "../model/Speaker";
+import { ECDH } from "crypto";
 
-export default class OrganizerService {
+export default class OrganizerService implements  IOrganizer{
   private db = Database.getInstance();
 
   // --- Organizer ---
-  public createOrganizer(id: number, name: string, cpf: string, sector: string, email: string): Organizer {
+  public createOrganizer(
+      id: number,
+      name: string,
+      cpf: string,
+      sector: string,
+      email: string
+  ): Organizer {
     const organizer = new Organizer(id, name, cpf, sector, email);
     this.db.insertNewOrganizer(organizer);
     return organizer;
@@ -48,7 +58,15 @@ export default class OrganizerService {
     return event;
   }
 
-  public removeEvent(event: AsyncEvent | OnSiteEvent): boolean {
+  public addSpeakerInEvent(
+      event: Event,
+      speaker: Speaker
+  ) : Event | Speaker {
+      this.db.insertSpeakerInEvent(event, speaker);
+      return event;
+  }
+
+    public removeEvent(event: AsyncEvent | OnSiteEvent) {
     return this.db.removeEvent(event);
   }
 
@@ -57,7 +75,13 @@ export default class OrganizerService {
   }
 
   // --- Address helper ---
-  public createAddress(rua: string, numero: number, city: string, state: string, zip: string): Address {
+  public createAddress(
+      rua: string,
+      numero: number,
+      city: string,
+      state: string,
+      zip: string
+  ): Address {
     return new Address(rua, numero, city, state, zip);
   }
 }

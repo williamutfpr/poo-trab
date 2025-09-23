@@ -35,6 +35,10 @@ class OrganizerService {
         this.db.insertNewEvent(event);
         return event;
     }
+    addSpeakerInEvent(event, speaker) {
+        this.db.insertSpeakerInEvent(event, speaker);
+        return event;
+    }
     removeEvent(event) {
         return this.db.removeEvent(event);
     }

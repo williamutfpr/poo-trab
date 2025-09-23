@@ -20,5 +20,9 @@ class OrganizerController {
     createAddress(rua, numero, city, state, zip) {
         return this.service.createAddress(rua, numero, city, state, zip);
     }
+    // --- Speaker
+    addSpeakerinEvent(event, speaker) {
+        return this.service.addSpeakerInEvent(event, speaker);
+    }
 }
 exports.default = OrganizerController;

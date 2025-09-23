@@ -17,7 +17,6 @@ export default class EventView {
     private mainController: MainController;
     private database: Database;
 
-
     constructor(mainController: MainController) {
         this.mainController = mainController;
         this.database = Database.getInstance();
@@ -85,6 +84,9 @@ export default class EventView {
         let event;
 
         if (typeOption === '1') {
+
+            AsyncEvent.getEvent();
+
             type = TypeEventEnum.EAD
             const link = prompt('Meeting link: ');
 
@@ -92,7 +94,10 @@ export default class EventView {
                 id, type, name, time, max, field, status, link
             );
 
+
         } else if (typeOption === '2') {
+            OnSiteEvent.getEvent();
+
             type = TypeEventEnum.PRESENCIAL
 
             console.log("\n📍 Event Address:");

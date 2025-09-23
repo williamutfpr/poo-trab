@@ -81,6 +81,10 @@ export default class Database {
     }
 
     // --- Speakers ---
+    createNewSpeaker(s: Speaker): void {
+        this.speakers.push(s);
+    }
+
     insertNewSpeaker(s: Speaker): void {
         this.speakers.push(s);
     }
@@ -88,5 +92,8 @@ export default class Database {
         this.speakers = this.speakers.filter(x => x !== s);
     }
 
+    insertSpeakerInEvent(e: Event, s: Speaker): void {
+        e.addSpeaker(s)
+    }
 
 }

@@ -6,6 +6,7 @@ import { AsyncEvent } from "../model/AsyncEvent";
 import { OnSiteEvent } from "../model/OnSiteEvent";
 import Participant from "../model/Participant";
 import Speaker from "../model/Speaker";
+import { StatusEnum } from "../Enum/StatusEventEnum";
 
 export default class EventService implements IEvent {
     private events: Event[] = [];
@@ -53,4 +54,22 @@ export default class EventService implements IEvent {
             this.db.removeSpeaker(speaker);
         }
     }
+
+    // sobrescrita
+    searchEvent(name: string): Event[];
+    searchEvent(date: Date): Event[];
+    searchEvent(status: StatusEnum): Event[];
+
+    searchEvent(
+        criteria: string | Date | StatusEnum 
+    ): Event[] {
+        if (typeof criteria === 'string') {
+            return this.events.filter(e => e.getName().includes(criteria));
+        }
+        if (criteria instanceof Date) {
+            return this.events.filter(e => e.getTime() === criteria.getTime());
+        }
+        // StatusEnum
+        return this.events.filter(e => e.getStatus === criteria);
+    }   
 }

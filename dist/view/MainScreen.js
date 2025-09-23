@@ -27,8 +27,8 @@ class MainScreen {
             console.log("4. Configure Event");
             console.log("5. Exit");
             console.log("===============================");
-            const escolha = prompt("Escolha uma opção: ");
-            switch (escolha) {
+            const choice = prompt("Chose a option: ");
+            switch (choice) {
                 case '1':
                     new ParticipantView_1.default(this.mainController);
                     break;

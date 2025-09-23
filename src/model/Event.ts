@@ -187,4 +187,8 @@ export abstract class Event {
         }
         return false;
     }
+    // sobrecarfga
+    public getEvent(){
+        console.log("This is a hybrid event")
+    }
 }

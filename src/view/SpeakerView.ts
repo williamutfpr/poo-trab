@@ -1,7 +1,13 @@
+import PromptSync from "prompt-sync";
 import MainController from "../controller/MainController";
+
 import Database from "../db/Database";
 
+const prompt = PromptSync();
+
+
 export default class SpeakerView {
+
 
   private mainController: MainController;
   private database: Database;
@@ -16,47 +22,15 @@ export default class SpeakerView {
     let continues = true;
 
     while (continues = true) {
-      console.log("You chose Speaker console");
-      console.log("1. Create Speaker");
-      console.log("2. List Speaker");
-      console.log("3. Delete Speaker");
-      console.log("4. Return")
+      console.log("You chose Organize console");
+      console.log("1. Create Organizer");
+      console.log("2. List Organizer");
+      console.log("3. Delete Organizer");
+      console.log("4. Add Speaker on event");
+      console.log("5. Return")
     }
 
-    let choice = prompt("Chose a option");
-    switch (choice) {
-      case "1":
-        this.createSpeakerMenu();
-        break
 
-      case "2":
-        this.listSpeakerMenu();
-        break
-
-      case "3":
-        this.deleteSpeakerMenu();
-        break
-
-      case "4":
-        console.log("back");
-        break
-
-      default:
-        console.log("❌ Invalid option. Try again.\n");
-        break
-    }
-  }
-
-  public createSpeakerMenu(): void {
 
   }
-
-  public listSpeakerMenu(): void {
-
-  }
-
-  public deleteSpeakerMenu(): void {
-
-  }
-
 }

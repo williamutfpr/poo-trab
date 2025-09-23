@@ -38,7 +38,7 @@ export default class MainScreen {
                     break;
                 case '2':
                     new OrganizerView(this.mainController);
-                    break;
+                    break;  
                 case '3':
                     new SpeakerView(this.mainController);
                     break;

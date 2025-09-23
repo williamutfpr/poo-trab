@@ -70,11 +70,17 @@ class Database {
         return this.participants;
     }
     // --- Speakers ---
+    createNewSpeaker(s) {
+        this.speakers.push(s);
+    }
     insertNewSpeaker(s) {
         this.speakers.push(s);
     }
     removeSpeaker(s) {
         this.speakers = this.speakers.filter(x => x !== s);
+    }
+    insertSpeakerInEvent(e, s) {
+        e.addSpeaker(s);
     }
 }
 exports.default = Database;
