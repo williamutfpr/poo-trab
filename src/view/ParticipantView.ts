@@ -1,7 +1,6 @@
 import promptSync from 'prompt-sync';
 const prompt = promptSync();
 
-import Participant from '../model/Participant';
 import Database from '../db/Database';
 import MainController from '../controller/MainController';
 import People from '../model/People';
@@ -13,13 +12,13 @@ export default class ParticipantView {
     constructor(mainController: MainController) {
         this.mainController = mainController;
         this.database = Database.getInstance();
-        this.mainMenu();
+
     }
 
-    private mainMenu(): void {
-        let continuar = true;
+    public mainMenu(): void {
+        let running = true;
 
-        while (continuar) {
+        while (running) {
             console.log("===============================");
             console.log("    MENU     ");
             console.log("===============================");
@@ -28,9 +27,9 @@ export default class ParticipantView {
             console.log("3. Exit");
             console.log("===============================");
 
-            const escolha = prompt("Escolha uma opção: ");
+            const choice = prompt("Choose an option: ");
 
-            switch (escolha) {
+            switch (choice) {
                 case '1':
                     console.log("You chose Create User");
                     this.createParticipantMenu();
@@ -40,7 +39,7 @@ export default class ParticipantView {
                     this.listUsersMenu();
                     break;
                 case '3':
-                    continuar = false;
+                    running = false;
                     break;
                 default:
                     console.log("Opção inválida. Tente novamente.\n");

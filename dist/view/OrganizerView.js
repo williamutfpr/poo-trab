@@ -13,34 +13,34 @@ class OrganizerView {
     constructor(mainController) {
         this.mainController = mainController;
         this.database = Database_1.default.getInstance();
-        this.mainMenu();
     }
     mainMenu() {
-        let continues = true;
-        while (continues = true) {
-            console.log("You chose Organize console");
+        let running = true;
+        while (running) {
+            console.log("\nYou chose Organize console");
             console.log("1. Create Organizer");
             console.log("2. List Organizer");
             console.log("3. Add Speaker on event");
             console.log("4. Return");
-        }
-        let choice = prompt("Chose a option");
-        switch (choice) {
-            case "1":
-                this.createOrganizerMenu();
-                break;
-            case "2":
-                this.listOrganizerMenu();
-                break;
-            case "3":
-                this.AddSpeakerOnEvent();
-                break;
-            case "4":
-                console.log("back");
-                break;
-            default:
-                console.log("❌ Invalid option. Try again.\n");
-                break;
+            let choice = prompt("Choose an option: ");
+            switch (choice) {
+                case "1":
+                    this.createOrganizerMenu();
+                    break;
+                case "2":
+                    this.listOrganizerMenu();
+                    break;
+                case "3":
+                    this.AddSpeakerOnEvent();
+                    break;
+                case "4":
+                    console.log("Returning...");
+                    running = false;
+                    break;
+                default:
+                    console.log("❌ Invalid option. Try again.\n");
+                    break;
+            }
         }
     }
     createOrganizerMenu() {
@@ -70,7 +70,6 @@ class OrganizerView {
         });
     }
     AddSpeakerOnEvent() {
-        this.mainController.ec;
         // this.mainController.oc.addSpeakerinEvent(e,s)
     }
 }

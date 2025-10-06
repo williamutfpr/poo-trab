@@ -5,6 +5,7 @@ import { AsyncEvent } from "../model/AsyncEvent";
 import { OnSiteEvent } from "../model/OnSiteEvent";
 import Participant from "../model/Participant";
 import Speaker from "../model/Speaker";
+import { StatusEnum } from "../Enum/StatusEventEnum";
 
 export default class EventController {
   constructor(private service: EventService) {}
@@ -31,8 +32,8 @@ export default class EventController {
   //   this.service.removeParticipant(participant, event);
   // }
 
-  public searchEvent(option: any) {
-    this.service.searchEvent(option)
-  };
+  public searchEvent(option: StatusEnum | string): Event[] {
+  return this.service.searchEvent(option);
+}
 
 }

@@ -23,8 +23,7 @@ class EventController {
     //   this.service.removeParticipant(participant, event);
     // }
     searchEvent(option) {
-        this.service.searchEvent(option);
+        return this.service.searchEvent(option);
     }
-    ;
 }
 exports.default = EventController;

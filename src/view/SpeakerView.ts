@@ -2,7 +2,6 @@ import PromptSync from "prompt-sync";
 import MainController from "../controller/MainController";
 
 import Database from "../db/Database";
-import { before } from "node:test";
 import People from "../model/People";
 
 const prompt = PromptSync();
@@ -15,38 +14,41 @@ export default class SpeakerView {
   constructor(mainController: MainController) {
     this.mainController = mainController;
     this.database = Database.getInstance();
-    this.mainMenu();
-  }
-
-  private mainMenu(): void {
-    let continues = true;
-
-    while (continues = true) {
-      console.log("You chose Organize console");
-      console.log("1. Create Organizer");
-      console.log("2. List Organizer");
-      console.log("3. Add Speaker on event");
-      console.log("4. Return")
-    }
-
-    let choice = prompt("choose an option ")
-
-    switch (choice) {
-      case "1":
-        this.createOrganizer();
-        break
-
-      case "2":
-        this.listOrganizer();
-        break
-
-      case "3":
-        console.log("Back")
-        break
-    }
-
 
   }
+
+  public mainMenu(): void {
+    let running = true;
+
+    while (running) {
+      console.log("\nYou chose Speaker console");
+      console.log("1. Create Speaker");
+      console.log("2. List Speakers");
+      console.log("3. Return");
+
+      let choice = prompt("Choose an option: ");
+
+      switch (choice) {
+        case "1":
+          this.createOrganizer();
+          break;
+
+        case "2":
+          this.listOrganizer();
+          break;
+
+        case "3":
+          console.log("Back");
+          running = false; // encerra o loop
+          break;
+
+        default:
+          console.log("❌ Invalid option. Try again.\n");
+          break;
+      }
+    }
+  }
+
   private createOrganizer(): void {
     console.log("\n🎉 Creating New User:");
     console.log("===============================");

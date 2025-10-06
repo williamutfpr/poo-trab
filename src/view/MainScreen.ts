@@ -34,16 +34,16 @@ export default class MainScreen {
 
             switch (choice) {
                 case '1':
-                    new ParticipantView(this.mainController);
+                    new ParticipantView(this.mainController).mainMenu();
                     break;
                 case '2':
-                    new OrganizerView(this.mainController);
+                    new OrganizerView(this.mainController).mainMenu();
                     break;  
                 case '3':
-                    new SpeakerView(this.mainController);
+                    new SpeakerView(this.mainController).mainMenu();
                     break;
                 case '4':
-                    new EventView(this.mainController);
+                    new EventView(this.mainController).mainMenu();
                     break;
                 case '5':
                     continuar = false;

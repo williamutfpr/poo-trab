@@ -59,14 +59,13 @@ export default class EventService implements IEvent {
     searchEvent(name: string): Event[];
     searchEvent(status: StatusEnum): Event[];
 
-    searchEvent(
-        criteria: string | StatusEnum
-    ): Event[] {
-        if (typeof criteria === 'string') {
-            return this.events.filter(e => e.getName().includes(criteria));
-        }
-        else {
-            return this.events.filter(e => e.getStatus === criteria);
+    public searchEvent(criteria: string | StatusEnum): Event[] {
+        const events = this.db.getAllEvents(); 
+        if (typeof criteria === "string") {
+            return events.filter(e => e.getName().toLowerCase().includes(criteria.toLowerCase()));
+        } else {
+            return events.filter(e => e.getStatus() == criteria);
         }
     }
+
 }

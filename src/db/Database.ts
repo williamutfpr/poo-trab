@@ -61,9 +61,11 @@ export default class Database {
     createNewParticipant(p: Participant): void {
         this.participants.push(p);
     }
+
     // removeParticipant(p: Participant): void {
     //     this.participants = this.participants.filter(x => x !== p);
     // }
+
     insertParticipantInEvent(e: Event, p: Participant): AsyncEvent | OnSiteEvent {
         // exemplo de lógica simples:
         if (e instanceof AsyncEvent) {
@@ -76,6 +78,7 @@ export default class Database {
             throw new Error("Tipo de evento não suportado");
         }
     }
+
     getAllParticipants(): Participant[] {
         return this.participants;
     }
@@ -88,6 +91,7 @@ export default class Database {
     insertNewSpeaker(s: Speaker): void {
         this.speakers.push(s);
     }
+
     removeSpeaker(s: Speaker): void {
         this.speakers = this.speakers.filter(x => x !== s);
     }

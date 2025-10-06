@@ -13,28 +13,30 @@ class SpeakerView {
     constructor(mainController) {
         this.mainController = mainController;
         this.database = Database_1.default.getInstance();
-        this.mainMenu();
     }
     mainMenu() {
-        let continues = true;
-        while (continues = true) {
-            console.log("You chose Organize console");
-            console.log("1. Create Organizer");
-            console.log("2. List Organizer");
-            console.log("3. Add Speaker on event");
-            console.log("4. Return");
-        }
-        let choice = prompt("choose an option ");
-        switch (choice) {
-            case "1":
-                this.createOrganizer();
-                break;
-            case "2":
-                this.listOrganizer();
-                break;
-            case "3":
-                console.log("Back");
-                break;
+        let running = true;
+        while (running) {
+            console.log("\nYou chose Speaker console");
+            console.log("1. Create Speaker");
+            console.log("2. List Speakers");
+            console.log("3. Return");
+            let choice = prompt("Choose an option: ");
+            switch (choice) {
+                case "1":
+                    this.createOrganizer();
+                    break;
+                case "2":
+                    this.listOrganizer();
+                    break;
+                case "3":
+                    console.log("Back");
+                    running = false; // encerra o loop
+                    break;
+                default:
+                    console.log("❌ Invalid option. Try again.\n");
+                    break;
+            }
         }
     }
     createOrganizer() {

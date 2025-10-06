@@ -30,16 +30,16 @@ class MainScreen {
             const choice = prompt("Chose a option: ");
             switch (choice) {
                 case '1':
-                    new ParticipantView_1.default(this.mainController);
+                    new ParticipantView_1.default(this.mainController).mainMenu();
                     break;
                 case '2':
-                    new OrganizerView_1.default(this.mainController);
+                    new OrganizerView_1.default(this.mainController).mainMenu();
                     break;
                 case '3':
-                    new SpeakerView_1.default(this.mainController);
+                    new SpeakerView_1.default(this.mainController).mainMenu();
                     break;
                 case '4':
-                    new EventView_1.default(this.mainController);
+                    new EventView_1.default(this.mainController).mainMenu();
                     break;
                 case '5':
                     continuar = false;

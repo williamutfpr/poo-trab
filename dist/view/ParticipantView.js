@@ -13,11 +13,10 @@ class ParticipantView {
     constructor(mainController) {
         this.mainController = mainController;
         this.database = Database_1.default.getInstance();
-        this.mainMenu();
     }
     mainMenu() {
-        let continuar = true;
-        while (continuar) {
+        let running = true;
+        while (running) {
             console.log("===============================");
             console.log("    MENU     ");
             console.log("===============================");
@@ -25,8 +24,8 @@ class ParticipantView {
             console.log("2. List Users");
             console.log("3. Exit");
             console.log("===============================");
-            const escolha = prompt("Escolha uma opção: ");
-            switch (escolha) {
+            const choice = prompt("Choose an option: ");
+            switch (choice) {
                 case '1':
                     console.log("You chose Create User");
                     this.createParticipantMenu();
@@ -36,7 +35,7 @@ class ParticipantView {
                     this.listUsersMenu();
                     break;
                 case '3':
-                    continuar = false;
+                    running = false;
                     break;
                 default:
                     console.log("Opção inválida. Tente novamente.\n");

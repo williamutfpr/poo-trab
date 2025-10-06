@@ -45,11 +45,12 @@ class EventService {
         }
     }
     searchEvent(criteria) {
-        if (typeof criteria === 'string') {
-            return this.events.filter(e => e.getName().includes(criteria));
+        const events = this.db.getAllEvents();
+        if (typeof criteria === "string") {
+            return events.filter(e => e.getName().toLowerCase().includes(criteria.toLowerCase()));
         }
         else {
-            return this.events.filter(e => e.getStatus === criteria);
+            return events.filter(e => e.getStatus() == criteria);
         }
     }
 }

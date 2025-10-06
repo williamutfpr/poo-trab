@@ -1,5 +1,4 @@
 import People from "./People";
-import Address from "./Address";
 
 export default class Organizer extends People {
   private sector: string; // setor (TI,Pscico,Nutri ...)
