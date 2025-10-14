@@ -105,6 +105,14 @@ class Event {
         }
         return false; // evento cheio ou já existe
     }
+    removeParticipant(p) {
+        const index = this.listP.indexOf(p);
+        if (index !== -1) {
+            this.listP.splice(index, 1);
+            return true;
+        }
+        return false;
+    }
     // --- Speakers ---
     getSpeakers() {
         return this.listS;
@@ -128,12 +136,27 @@ class Event {
     getOrganizers() {
         return this.listO;
     }
-    pushOrganizers(o) {
+    Organizers(o) {
         if (!this.listO.includes(o)) {
             this.listO.push(o);
             return true;
         }
         return false;
+    }
+    removeOrganizers(o) {
+        const index = this.listO.indexOf(o);
+        if (index !== -1) {
+            this.listO.splice(index, 1);
+            return true;
+        }
+        return false;
+    }
+    // implementação abstrata + sobrescrita 
+    getLocalOnSite() {
+        return this.address;
+    }
+    getLocalAsync() {
+        return this.link;
     }
     // sobrecarga --
     getEvent() {

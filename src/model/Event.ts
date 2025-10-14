@@ -8,7 +8,7 @@ import { TypeEventEnum } from "../Enum/TypeEventEnum";
 import { randomInt } from "crypto";
 
 //
-export class Event {
+export abstract class Event {
     private id: number;
     private type: TypeEventEnum;
     private name: string;
@@ -136,11 +136,20 @@ export class Event {
         return false; // evento cheio ou já existe
     }
 
+    public removeParticipant(p: Participant): boolean {
+        const index = this.listP.indexOf(p);
+        if (index !== -1) {
+            this.listP.splice(index, 1);
+            return true;
+        }
+        return false;
+    }
 
     // --- Speakers ---
     public getSpeakers(): Speaker[] {
         return this.listS;
     }
+
     public addSpeaker(s: Speaker): boolean {
         if (!this.listS.includes(s)) {
             this.listS.push(s);
@@ -148,6 +157,7 @@ export class Event {
         }
         return false;
     }
+
     public removeSpeaker(s: Speaker): boolean {
         const index = this.listS.indexOf(s);
         if (index !== -1) {
@@ -161,13 +171,33 @@ export class Event {
     public getOrganizers(): Organizer[] {
         return this.listO;
     }
-    public pushOrganizers(o: Organizer): boolean {
+
+    public Organizers(o: Organizer): boolean {
         if (!this.listO.includes(o)) {
             this.listO.push(o);
             return true;
         }
         return false;
     }
+
+    public removeOrganizers(o: Organizer): boolean {
+        const index = this.listO.indexOf(o);
+        if (index !== -1) {
+            this.listO.splice(index, 1);
+            return true;
+        }
+        return false;
+    }
+
+
+    // implementação abstrata + sobrescrita 
+    public getLocalOnSite(){
+        return this.address;
+    }
+    public getLocalAsync(){
+        return this.link;
+    }
+
 
     // sobrecarga --
     public getEvent(){

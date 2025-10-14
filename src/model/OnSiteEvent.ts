@@ -16,7 +16,7 @@ export class OnSiteEvent extends Event {
     address: Address
   ) {
     super(id, type, name, time, maxParticipants, field, status);
-    this.address = address;
+    this.getLocalOnSite()
   }
 
   // sobrecarga --

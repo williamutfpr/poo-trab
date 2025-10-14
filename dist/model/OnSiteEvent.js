@@ -5,7 +5,7 @@ const Event_1 = require("./Event");
 class OnSiteEvent extends Event_1.Event {
     constructor(id, type, name, time, maxParticipants, field, status, address) {
         super(id, type, name, time, maxParticipants, field, status);
-        this.address = address;
+        this.getLocalOnSite();
     }
     // sobrecarga --
     static getEvent() {

@@ -18,7 +18,6 @@ export class AsyncEvent extends Event {
     this.link = link;
   }
 
-
   // sobrescrita ---
   public static getEvent() {
     console.log("This is an async event")
