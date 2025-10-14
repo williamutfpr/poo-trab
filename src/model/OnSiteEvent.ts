@@ -5,6 +5,8 @@ import { TypeEventEnum } from "../Enum/TypeEventEnum";
 
 export class OnSiteEvent extends Event {
 
+  private address: Address;
+
   constructor(
     id: number,
     type: TypeEventEnum,
@@ -16,9 +18,17 @@ export class OnSiteEvent extends Event {
     address: Address
   ) {
     super(id, type, name, time, maxParticipants, field, status);
-    this.getLocalOnSite()
+    this.address = address;
   }
 
+  // --- Address ---
+  public setAddress(address: Address): void {
+    this.address = address;
+  }
+  public getLocal(): string | Address {
+    return this.address;
+  }
+  
   // sobrecarga --
   public static getEvent() {
     console.log("This is in-person event")

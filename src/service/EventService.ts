@@ -22,7 +22,7 @@ export default class EventService implements IEvent {
     }
 
     public listAsyncEvents(): AsyncEvent[] {
-        return this.events.filter(e => e instanceof AsyncEvent) as AsyncEvent[];
+        return this.events.filter(events => events instanceof AsyncEvent) as AsyncEvent[];
     }
 
     public listOnSiteEvents(): OnSiteEvent[] {
@@ -36,22 +36,10 @@ export default class EventService implements IEvent {
         }
     }
 
-    // public removeParticipant(participant: Participant, event: Event): void {
-    //     if (event.removeParticipant(participant)) {
-    //         this.db.removeParticipant(participant);
-    //     }
-    // }
-
     // --- Speakers ---
     public addSpeaker(speaker: Speaker, event: Event): void {
         if (event.addSpeaker(speaker)) {
             this.db.insertNewSpeaker(speaker);
-        }
-    }
-
-    public removeSpeaker(speaker: Speaker, event: Event): void {
-        if (event.removeSpeaker(speaker)) {
-            this.db.removeSpeaker(speaker);
         }
     }
 
@@ -60,7 +48,7 @@ export default class EventService implements IEvent {
     searchEvent(status: StatusEnum): Event[];
 
     public searchEvent(criteria: string | StatusEnum): Event[] {
-        const events = this.db.getAllEvents(); 
+        const events = this.db.getAllEvents();
         if (typeof criteria === "string") {
             return events.filter(e => e.getName().toLowerCase().includes(criteria.toLowerCase()));
         } else {

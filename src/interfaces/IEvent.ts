@@ -12,9 +12,7 @@ export default interface IEvent {
 
     // --- Participants ---
     addParticipant(participant: Participant, event: Event): void;
-    // removeParticipant(participant: Participant, event: Event): void;
 
     // --- Speakers ---
     addSpeaker(speaker: Speaker, event: Event): void;
-    removeSpeaker(speaker: Speaker, event: Event): void;
 }

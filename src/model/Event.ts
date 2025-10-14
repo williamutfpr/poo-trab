@@ -22,8 +22,6 @@ export abstract class Event {
     private field: string;
     private status: StatusEnum;
 
-    address?: Address;
-    link?: string;
 
     constructor(
         id: number,
@@ -107,21 +105,6 @@ export abstract class Event {
         this.status = status;
     }
 
-    // --- Address ---
-    public getAddress(): Address | undefined {
-        return this.address;
-    }
-    public setAddress(address: Address): void {
-        this.address = address;
-    }
-
-    // --- Address ---
-    public getLink(): string | undefined {
-        return this.link;
-    }
-    public setLink(link: string): void {
-        this.link = link;
-    }
 
     // --- Participants ---
     public getParticipants(): Participant[] {
@@ -189,15 +172,8 @@ export abstract class Event {
         return false;
     }
 
-
-    // implementação abstrata + sobrescrita 
-    public getLocalOnSite(){
-        return this.address;
-    }
-    public getLocalAsync(){
-        return this.link;
-    }
-
+    // implementação abstrata
+    public abstract getLocal():string | Address;
 
     // sobrecarga --
     public getEvent(){

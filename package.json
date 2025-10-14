@@ -16,7 +16,11 @@
     "skipLibCheck": true
   },
   "devDependencies": {
+    "@types/jest": "^30.0.0",
     "@types/node": "^24.3.0",
-    "@types/prompt-sync": "^4.2.3"
+    "@types/prompt-sync": "^4.2.3",
+    "jest": "^30.2.0",
+    "ts-jest": "^29.4.5",
+    "typescript": "^5.9.3"
   }
 }
