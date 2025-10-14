@@ -21,19 +21,18 @@ export default class MainController {
 
     constructor() {
         this.db = Database.getInstance();
+        // inj de dp
 
         // --- Services ---
         const eventService = new EventService();
         const organizerService = new OrganizerService();
         const participantService = new ParticipantService();
         const speakerService = new SpeakerService();
-
         // --- Controllers ---
         this.ec = new EventController(eventService);
         this.oc = new OrganizerController(organizerService);
         this.pc = new ParticipantController(participantService);
         this.sc = new SpeakerControler(speakerService);
-
     }
 
     public start(): void {

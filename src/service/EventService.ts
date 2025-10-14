@@ -55,7 +55,7 @@ export default class EventService implements IEvent {
         }
     }
 
-    // sobrescrita
+    // sobrescrita --
     searchEvent(name: string): Event[];
     searchEvent(status: StatusEnum): Event[];
 

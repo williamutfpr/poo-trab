@@ -30,6 +30,4 @@ export interface IOrganizer {
         event: Event, speaker: Speaker
     ) : Event | Speaker
 
-
-
 }

@@ -7,6 +7,7 @@ import { TypeEventEnum } from "../Enum/TypeEventEnum";
 
 import { randomInt } from "crypto";
 
+//
 export abstract class Event {
     private id: number;
     private type: TypeEventEnum;
@@ -187,7 +188,7 @@ export abstract class Event {
         }
         return false;
     }
-    // sobrecarfga
+    // sobrecarga --
     public getEvent(){
         console.log("This is a hybrid event")
     }

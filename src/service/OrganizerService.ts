@@ -85,6 +85,7 @@ export default class OrganizerService implements IOrganizer {
     return new Address(rua, numero, city, state, zip);
   }
 
+  // sobrecarga
   searchSpeaker(name: string): Speaker[];
   searchSpeaker(id: number): Speaker[]
 

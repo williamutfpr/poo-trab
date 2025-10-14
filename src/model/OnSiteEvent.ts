@@ -19,7 +19,7 @@ export class OnSiteEvent extends Event {
     this.address = address;
   }
 
-  // sobrecarga
+  // sobrecarga --
   public static getEvent() {
     console.log("This is in-person event")
   }
