@@ -22,6 +22,7 @@ class MainController {
     sc;
     constructor() {
         this.db = Database_1.default.getInstance();
+        // inj de dp
         // --- Services ---
         const eventService = new EventService_1.default();
         const organizerService = new OrganizerService_1.default();

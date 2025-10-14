@@ -8,7 +8,7 @@ class AsyncEvent extends Event_1.Event {
         super(id, type, name, time, maxParticipants, field, status);
         this.link = link;
     }
-    // sobrecarga
+    // sobrescrita ---
     static getEvent() {
         console.log("This is an async event");
     }

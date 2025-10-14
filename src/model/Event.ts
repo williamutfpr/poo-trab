@@ -8,7 +8,7 @@ import { TypeEventEnum } from "../Enum/TypeEventEnum";
 import { randomInt } from "crypto";
 
 //
-export abstract class Event {
+export class Event {
     private id: number;
     private type: TypeEventEnum;
     private name: string;
@@ -136,20 +136,11 @@ export abstract class Event {
         return false; // evento cheio ou já existe
     }
 
-    public removeParticipant(p: Participant): boolean {
-        const index = this.listP.indexOf(p);
-        if (index !== -1) {
-            this.listP.splice(index, 1);
-            return true;
-        }
-        return false;
-    }
 
     // --- Speakers ---
     public getSpeakers(): Speaker[] {
         return this.listS;
     }
-
     public addSpeaker(s: Speaker): boolean {
         if (!this.listS.includes(s)) {
             this.listS.push(s);
@@ -157,7 +148,6 @@ export abstract class Event {
         }
         return false;
     }
-
     public removeSpeaker(s: Speaker): boolean {
         const index = this.listS.indexOf(s);
         if (index !== -1) {
@@ -171,8 +161,7 @@ export abstract class Event {
     public getOrganizers(): Organizer[] {
         return this.listO;
     }
-
-    public Organizers(o: Organizer): boolean {
+    public pushOrganizers(o: Organizer): boolean {
         if (!this.listO.includes(o)) {
             this.listO.push(o);
             return true;
@@ -180,14 +169,6 @@ export abstract class Event {
         return false;
     }
 
-    public removeOrganizers(o: Organizer): boolean {
-        const index = this.listO.indexOf(o);
-        if (index !== -1) {
-            this.listO.splice(index, 1);
-            return true;
-        }
-        return false;
-    }
     // sobrecarga --
     public getEvent(){
         console.log("This is a hybrid event")

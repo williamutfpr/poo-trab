@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Event = void 0;
 const crypto_1 = require("crypto");
+//
 class Event {
     id;
     type;
@@ -104,14 +105,6 @@ class Event {
         }
         return false; // evento cheio ou já existe
     }
-    removeParticipant(p) {
-        const index = this.listP.indexOf(p);
-        if (index !== -1) {
-            this.listP.splice(index, 1);
-            return true;
-        }
-        return false;
-    }
     // --- Speakers ---
     getSpeakers() {
         return this.listS;
@@ -135,22 +128,14 @@ class Event {
     getOrganizers() {
         return this.listO;
     }
-    Organizers(o) {
+    pushOrganizers(o) {
         if (!this.listO.includes(o)) {
             this.listO.push(o);
             return true;
         }
         return false;
     }
-    removeOrganizers(o) {
-        const index = this.listO.indexOf(o);
-        if (index !== -1) {
-            this.listO.splice(index, 1);
-            return true;
-        }
-        return false;
-    }
-    // sobrecarfga
+    // sobrecarga --
     getEvent() {
         console.log("This is a hybrid event");
     }
