@@ -70,9 +70,6 @@ export default class OrganizerService implements IOrganizer {
     return this.db.removeEvent(event);
   }
 
-  public getAllEvents(): (AsyncEvent | OnSiteEvent)[] {
-    return this.db.getAllEvents();
-  }
 
   // --- Address helper ---
   public createAddress(

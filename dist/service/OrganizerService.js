@@ -43,9 +43,6 @@ class OrganizerService {
     removeEvent(event) {
         return this.db.removeEvent(event);
     }
-    getAllEvents() {
-        return this.db.getAllEvents();
-    }
     // --- Address helper ---
     createAddress(rua, numero, city, state, zip) {
         return new Address_1.default(rua, numero, city, state, zip);

@@ -6,6 +6,7 @@ import Organizer from "./Organizer";
 import { TypeEventEnum } from "../Enum/TypeEventEnum";
 
 import { randomInt } from "crypto";
+import FailCreateEvent from "../Error/FailToListEvent";
 
 //
 export abstract class Event {
@@ -86,7 +87,11 @@ export abstract class Event {
     }
 
     public getCurrentParticipants(): number {
-        return this.listP.length;
+        if (this.listP.length > 0) {
+            return this.listP.length;
+        } else {
+            throw new FailCreateEvent("Fail to list event")
+        }
     }
 
     // --- Field ---
@@ -111,7 +116,7 @@ export abstract class Event {
         return this.listP;
     }
 
-    public  addParticipant(p: Participant): boolean {
+    public addParticipant(p: Participant): boolean {
         if (this.listP.length < this.maxParticipants && !this.listP.includes(p)) {
             this.listP.push(p);
             return true;
@@ -173,10 +178,10 @@ export abstract class Event {
     }
 
     // implementação abstrata
-    public abstract getLocal():string | Address;
+    public abstract getLocal(): string | Address;
 
     // sobrecarga --
-    public getEvent(){
-        console.log("This is a hybrid event")
+    public getTypeEvent() {
+        console.log("hybrid event");
     }
 }

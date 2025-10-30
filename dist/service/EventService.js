@@ -17,7 +17,7 @@ class EventService {
         return this.events;
     }
     listAsyncEvents() {
-        return this.events.filter(e => e instanceof AsyncEvent_1.AsyncEvent);
+        return this.events.filter(events => events instanceof AsyncEvent_1.AsyncEvent);
     }
     listOnSiteEvents() {
         return this.events.filter(e => e instanceof OnSiteEvent_1.OnSiteEvent);
@@ -28,20 +28,10 @@ class EventService {
             this.db.createNewParticipant(participant);
         }
     }
-    // public removeParticipant(participant: Participant, event: Event): void {
-    //     if (event.removeParticipant(participant)) {
-    //         this.db.removeParticipant(participant);
-    //     }
-    // }
     // --- Speakers ---
     addSpeaker(speaker, event) {
         if (event.addSpeaker(speaker)) {
             this.db.insertNewSpeaker(speaker);
-        }
-    }
-    removeSpeaker(speaker, event) {
-        if (event.removeSpeaker(speaker)) {
-            this.db.removeSpeaker(speaker);
         }
     }
     searchEvent(criteria) {

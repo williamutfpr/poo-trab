@@ -3,7 +3,7 @@ import { TypeEventEnum } from "../Enum/TypeEventEnum";
 import { Event } from "./Event";
 
 export class AsyncEvent extends Event {
-private link: string
+  private link: string
 
   constructor(
     id: number,
@@ -19,16 +19,18 @@ private link: string
     this.link = link;
   }
 
-    public getLocal(): string {
+  public getLocal(): string {
     return this.link;
   }
 
   // --- Address ---
-      public setLink(link: string): void {
-          this.link = link;
-      }
+  public setLink(link: string): void {
+    this.link = link;
+  }
   // sobrecarga ---
-  public static getEvent() {
+  public static getTypeEvent() {
     console.log("This is an async event")
   }
+
+  
 }

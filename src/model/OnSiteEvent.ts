@@ -30,7 +30,7 @@ export class OnSiteEvent extends Event {
   }
   
   // sobrecarga --
-  public static getEvent() {
+  public static getTypeEvent() {
     console.log("This is in-person event")
   }
 }

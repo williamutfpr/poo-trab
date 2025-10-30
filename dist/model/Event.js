@@ -1,7 +1,11 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Event = void 0;
 const crypto_1 = require("crypto");
+const FailToListEvent_1 = __importDefault(require("../Error/FailToListEvent"));
 //
 class Event {
     id;
@@ -14,8 +18,6 @@ class Event {
     listO;
     field;
     status;
-    address;
-    link;
     constructor(id, type, name, time, maxParticipants, field, status) {
         this.id = id;
         this.type = type;
@@ -64,7 +66,12 @@ class Event {
         this.maxParticipants = maxParticipants;
     }
     getCurrentParticipants() {
-        return this.listP.length;
+        if (this.listP.length > 0) {
+            return this.listP.length;
+        }
+        else {
+            throw new FailToListEvent_1.default("Fail to list event");
+        }
     }
     // --- Field ---
     getField() {
@@ -79,20 +86,6 @@ class Event {
     }
     setStatus(status) {
         this.status = status;
-    }
-    // --- Address ---
-    getAddress() {
-        return this.address;
-    }
-    setAddress(address) {
-        this.address = address;
-    }
-    // --- Address ---
-    getLink() {
-        return this.link;
-    }
-    setLink(link) {
-        this.link = link;
     }
     // --- Participants ---
     getParticipants() {
@@ -151,16 +144,9 @@ class Event {
         }
         return false;
     }
-    // implementação abstrata + sobrescrita 
-    getLocalOnSite() {
-        return this.address;
-    }
-    getLocalAsync() {
-        return this.link;
-    }
     // sobrecarga --
-    getEvent() {
-        console.log("This is a hybrid event");
+    getTypeEvent() {
+        console.log("hybrid event");
     }
 }
 exports.Event = Event;
