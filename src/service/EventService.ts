@@ -9,7 +9,7 @@ import Speaker from "../model/Speaker";
 import { StatusEnum } from "../Enum/StatusEventEnum";
 
 export default class EventService implements IEvent {
-    private events: Event[] = [];
+    private events: Event<Participant>[] = [];
     private db: Database;
 
     constructor() {
@@ -17,7 +17,7 @@ export default class EventService implements IEvent {
     }
 
     // --- READ ---
-    public listEvents(): Event[] {
+    public listEvents(): Event<Participant>[] {
         return this.events;
     }
 
@@ -30,24 +30,24 @@ export default class EventService implements IEvent {
     }
 
     // --- Participants ---
-    public addParticipant(participant: Participant, event: Event): void {
+    public addParticipant(participant: Participant, event: Event<Participant>): void {
         if (event.addParticipant(participant)) {
             this.db.createNewParticipant(participant);
         }
     }
 
     // --- Speakers ---
-    public addSpeaker(speaker: Speaker, event: Event): void {
+    public addSpeaker(speaker: Speaker, event: Event<Participant>): void {
         if (event.addSpeaker(speaker)) {
             this.db.insertNewSpeaker(speaker);
         }
     }
 
     // sobrescrita --
-    searchEvent(name: string): Event[];
-    searchEvent(status: StatusEnum): Event[];
+    searchEvent(name: string): Event<Participant>[];
+    searchEvent(status: StatusEnum): Event<Participant>[];
 
-    public searchEvent(criteria: string | StatusEnum): Event[] {
+    public searchEvent(criteria: string | StatusEnum): Event<Participant>[] {
         const events = this.db.getAllEvents();
         if (typeof criteria === "string") {
             return events.filter(e => e.getName().toLowerCase().includes(criteria.toLowerCase()));

@@ -6,13 +6,13 @@ import Speaker from "../model/Speaker";
 
 export default interface IEvent {
     // --- READ ---
-    listEvents(): Event[];
+    listEvents(): Event<Participant>[];
     listAsyncEvents(): AsyncEvent[];
     listOnSiteEvents(): OnSiteEvent[];
 
     // --- Participants ---
-    addParticipant(participant: Participant, event: Event): void;
+    addParticipant(participant: Participant, event: Event<Participant>): void;
 
     // --- Speakers ---
-    addSpeaker(speaker: Speaker, event: Event): void;
+    addSpeaker(speaker: Speaker, event: Event<Participant>): void;
 }

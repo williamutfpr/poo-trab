@@ -6,7 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const prompt_sync_1 = __importDefault(require("prompt-sync"));
 const prompt = (0, prompt_sync_1.default)();
 const Database_1 = __importDefault(require("../db/Database"));
-const People_1 = __importDefault(require("../model/People"));
 class ParticipantView {
     mainController;
     database;
@@ -46,11 +45,11 @@ class ParticipantView {
     createParticipantMenu() {
         console.log("\n🎉 Creating New User:");
         console.log("===============================");
-        const id = Number(People_1.default.setId());
+        const id = Number(this.database.setId());
         const name = prompt('Participant name: ');
         const cpf = prompt('Insert your CPF, only numbers ');
         const mail = prompt('Insert your mail ');
-        const enrollmentId = Number(People_1.default.setId());
+        const enrollmentId = Number(this.database.setId());
         const participant = this.mainController.pc.createParticipant(id, name, cpf, mail, enrollmentId);
         this.database.createNewParticipant(participant);
     }

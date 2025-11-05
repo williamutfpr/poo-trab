@@ -8,6 +8,7 @@ class Database {
     events = [];
     participants = [];
     speakers = [];
+    entity;
     constructor() { }
     static getInstance() {
         if (!Database.instance) {
@@ -84,6 +85,9 @@ class Database {
     }
     insertSpeakerInEvent(e, s) {
         e.addSpeaker(s);
+    }
+    setId() {
+        this.entity?.setId();
     }
 }
 exports.default = Database;

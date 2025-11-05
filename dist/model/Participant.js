@@ -1,32 +1,19 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-class Participant {
-    id;
-    name;
-    cpf;
-    mail;
+const People_1 = __importDefault(require("./People"));
+class Participant extends People_1.default {
     enrollmentId;
     constructor(id, name, cpf, mail, enrollmentId) {
-        this.id = id;
-        this.name = name;
+        super(id, name, cpf, mail);
         this.cpf = cpf;
         this.mail = mail;
         this.enrollmentId = enrollmentId;
     }
-    getId() {
-        return this.id;
-    }
-    getName() {
-        return this.name;
-    }
-    getCpf() {
-        return this.cpf;
-    }
-    getMail() {
-        return this.mail;
-    }
     getEnrollmentId() {
-        return this.enrollmentId; // ✅ retorna o valor real
+        return this.enrollmentId;
     }
 }
 exports.default = Participant;

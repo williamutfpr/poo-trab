@@ -5,9 +5,9 @@
     "outDir": "./dist",
 
     // Ambiente e módulos
-    "module": "commonjs",          // ✅ Jest usa CommonJS por padrão
+    "module": "commonjs",          
     "target": "esnext",
-    "types": ["jest", "node"],     // ✅ tipos separados e corretos
+    "types": ["jest", "node"],     
     "lib": ["esnext"],
 
     // Opções de tipagem

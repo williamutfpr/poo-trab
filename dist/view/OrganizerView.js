@@ -5,7 +5,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const prompt_sync_1 = __importDefault(require("prompt-sync"));
 const Database_1 = __importDefault(require("../db/Database"));
-const People_1 = __importDefault(require("../model/People"));
 const prompt = (0, prompt_sync_1.default)();
 class OrganizerView {
     mainController;
@@ -46,7 +45,7 @@ class OrganizerView {
     createOrganizerMenu() {
         console.log("\n🎉 Creating New Organizer:");
         console.log("===============================");
-        const id = Number(People_1.default.setId());
+        const id = Number(this.database.setId());
         const name = prompt('Participant name: ');
         const cpf = prompt('Insert your CPF, only numbers: ');
         const mail = prompt('Insert your mail: ');

@@ -2,8 +2,9 @@ import { StatusEnum } from "../Enum/StatusEventEnum";
 import { Event } from "./Event";
 import Address from "./Address";
 import { TypeEventEnum } from "../Enum/TypeEventEnum";
+import Participant from "./Participant";
 
-export class OnSiteEvent extends Event {
+export class OnSiteEvent extends Event<Participant> {
 
   private address: Address;
 

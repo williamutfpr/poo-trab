@@ -5,6 +5,7 @@ import Address from "../model/Address";
 import Organizer from "../model/Organizer";
 import {Event} from "../model/Event";
 import Speaker from "../model/Speaker";
+import Participant from "../model/Participant";
 
 export interface IOrganizer {
     createOrganizer(
@@ -24,10 +25,10 @@ export interface IOrganizer {
         field: string,
         status: StatusEnum,
         opicional?: Address | string
-    ): Event
+    ): Event<Participant>
 
     addSpeakerInEvent(
-        event: Event, speaker: Speaker
-    ) : Event | Speaker
+        event: Event<Participant>, speaker: Speaker
+    ) : Event<Participant> | Speaker
 
 }

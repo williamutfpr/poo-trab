@@ -1,28 +1,16 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const crypto_1 = require("crypto");
-class People {
-    id;
-    name;
+const Entity_1 = __importDefault(require("./Entity"));
+class People extends Entity_1.default {
     cpf;
     mail;
     constructor(id, name, cpf, mail) {
-        this.id = id;
-        this.name = name;
+        super(id, name);
         this.cpf = cpf;
         this.mail = mail;
-    }
-    getId() {
-        return this.id;
-    }
-    static setId() {
-        return (0, crypto_1.randomInt)(1, 100000000);
-    }
-    getName() {
-        return this.name;
-    }
-    setName(name) {
-        this.name = name;
     }
     getCpf() {
         return this.cpf;
@@ -35,9 +23,6 @@ class People {
     }
     setMail(mail) {
         this.mail = mail;
-    }
-    welcome() {
-        console.log("welcome");
     }
 }
 exports.default = People;

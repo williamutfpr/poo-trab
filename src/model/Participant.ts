@@ -1,8 +1,7 @@
-export default class Participant {
-  private id: number;
-  private name: string;
-  private cpf: string;
-  private mail: string;
+
+import People from "./People";
+
+export default class Participant extends People  {
   private enrollmentId: number;
 
   constructor(
@@ -12,30 +11,13 @@ export default class Participant {
     mail: string,
     enrollmentId: number
   ) {
-    this.id = id;
-    this.name = name;
+    super(id, name,cpf,mail);
     this.cpf = cpf;
     this.mail = mail;
     this.enrollmentId = enrollmentId;
   }
 
-  public getId(): number {
-    return this.id;
-  }
-
-  public getName(): string {
-    return this.name;
-  }
-
-  public getCpf(): string {
-    return this.cpf;
-  }
-
-  public getMail(): string {
-    return this.mail;
-  }
-
   public getEnrollmentId(): number {
-    return this.enrollmentId; // ✅ retorna o valor real
+    return this.enrollmentId;
   }
 }

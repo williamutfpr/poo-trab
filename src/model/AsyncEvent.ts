@@ -1,8 +1,9 @@
 import { StatusEnum } from "../Enum/StatusEventEnum";
 import { TypeEventEnum } from "../Enum/TypeEventEnum";
 import { Event } from "./Event";
+import Participant from "./Participant";
 
-export class AsyncEvent extends Event {
+export class AsyncEvent extends Event<Participant> {
   private link: string
 
   constructor(

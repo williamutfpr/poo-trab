@@ -12,6 +12,7 @@ import Address from "../model/Address";
 
 import { StatusEnum } from "../Enum/StatusEventEnum";
 import { TypeEventEnum } from "../Enum/TypeEventEnum";
+import Participant from "../model/Participant";
 
 export default class OrganizerController {
   constructor(private service: OrganizerService) {}
@@ -46,7 +47,7 @@ export default class OrganizerController {
   }
 
   // --- Speaker
-    public addSpeakerinEvent(event: Event, speaker: Speaker) {
+    public addSpeakerinEvent(event: Event<Participant>, speaker: Speaker) {
         return this.service.addSpeakerInEvent(event,speaker)
     }
 }

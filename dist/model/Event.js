@@ -1,150 +1,104 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Event = void 0;
 const crypto_1 = require("crypto");
-const FailToListEvent_1 = __importDefault(require("../Error/FailToListEvent"));
-//
+const PeopleManager_1 = require("./PeopleManager");
 class Event {
     id;
     type;
     name;
     time;
     maxParticipants;
-    listP;
-    listS;
-    listO;
+    participants;
+    speakers;
+    organizers;
     field;
     status;
     constructor(id, type, name, time, maxParticipants, field, status) {
         this.id = id;
         this.type = type;
         this.name = name;
-        this.time = time; // minutes
+        this.time = time;
         this.maxParticipants = maxParticipants;
-        this.listP = [];
-        this.listS = [];
-        this.listO = [];
         this.field = field;
         this.status = status;
+        this.participants = new PeopleManager_1.PersonManager(this.maxParticipants);
+        this.speakers = new PeopleManager_1.PersonManager();
+        this.organizers = new PeopleManager_1.PersonManager();
     }
-    // --- id ---
     getId() {
         return this.id;
     }
     static setId() {
         return (0, crypto_1.randomInt)(1, 100000000);
     }
-    // --- Types ---
     getType() {
         return this.type;
     }
     setType(type) {
         this.type = type;
     }
-    // --- Name ---
     getName() {
         return this.name;
     }
     setName(name) {
         this.name = name;
     }
-    // --- Time ---
     getTime() {
         return this.time;
     }
     setTime(time) {
         this.time = time;
     }
-    // --- Max Participants ---
     getMaxParticipants() {
         return this.maxParticipants;
     }
     setMaxParticipants(maxParticipants) {
         this.maxParticipants = maxParticipants;
+        // Idealmente, você também atualizaria o 'maxSize' no PersonManager aqui.
     }
     getCurrentParticipants() {
-        if (this.listP.length > 0) {
-            return this.listP.length;
-        }
-        else {
-            throw new FailToListEvent_1.default("Fail to list event");
-        }
+        return this.participants.getCount();
     }
-    // --- Field ---
     getField() {
         return this.field;
     }
     setField(field) {
         this.field = field;
     }
-    // --- Status ---
     getStatus() {
         return this.status;
     }
     setStatus(status) {
         this.status = status;
     }
-    // --- Participants ---
     getParticipants() {
-        return this.listP;
+        return this.participants.getList();
     }
     addParticipant(p) {
-        if (this.listP.length < this.maxParticipants && !this.listP.includes(p)) {
-            this.listP.push(p);
-            return true;
-        }
-        return false; // evento cheio ou já existe
+        return this.participants.add(p);
     }
     removeParticipant(p) {
-        const index = this.listP.indexOf(p);
-        if (index !== -1) {
-            this.listP.splice(index, 1);
-            return true;
-        }
-        return false;
+        return this.participants.remove(p);
     }
-    // --- Speakers ---
     getSpeakers() {
-        return this.listS;
+        return this.speakers.getList();
     }
     addSpeaker(s) {
-        if (!this.listS.includes(s)) {
-            this.listS.push(s);
-            return true;
-        }
-        return false;
+        return this.speakers.add(s);
     }
     removeSpeaker(s) {
-        const index = this.listS.indexOf(s);
-        if (index !== -1) {
-            this.listS.splice(index, 1);
-            return true;
-        }
-        return false;
+        return this.speakers.remove(s);
     }
-    // --- Organizers ---
     getOrganizers() {
-        return this.listO;
+        return this.organizers.getList();
     }
-    Organizers(o) {
-        if (!this.listO.includes(o)) {
-            this.listO.push(o);
-            return true;
-        }
-        return false;
+    addOrganizer(o) {
+        return this.organizers.add(o);
     }
     removeOrganizers(o) {
-        const index = this.listO.indexOf(o);
-        if (index !== -1) {
-            this.listO.splice(index, 1);
-            return true;
-        }
-        return false;
+        return this.organizers.remove(o);
     }
-    // sobrecarga --
     getTypeEvent() {
         console.log("hybrid event");
     }

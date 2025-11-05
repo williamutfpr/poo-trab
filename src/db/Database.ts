@@ -5,14 +5,16 @@ import Participant from "../model/Participant";
 import Speaker from "../model/Speaker";
 import { OnSiteEvent } from "../model/OnSiteEvent";
 import { AsyncEvent } from "../model/AsyncEvent";
+import Entity from "../model/Entity";
 
 export default class Database {
 
     private static instance: Database;
     private organizers: Organizer[] = [];
-    private events: Event[] = [];
+    private events: Event<Participant>[] = [];
     private participants: Participant[] = [];
     private speakers: Speaker[] = [];
+    public entity: Entity | undefined
 
     private constructor() { }
 
@@ -42,13 +44,13 @@ export default class Database {
     }
 
     // --- Events ---
-    insertNewEvent(event: Event): void {
+    insertNewEvent(event: Event<Participant>): void {
         this.events.push(event);
     }
-    getAllEvents(): Event[] {
+    getAllEvents(): Event<Participant>[] {
         return this.events;
     }
-    removeEvent(event: Event): boolean {
+    removeEvent(event: Event<Participant>): boolean {
         const index = this.events.indexOf(event);
         if (index !== -1) {
             this.events.splice(index, 1);
@@ -66,7 +68,7 @@ export default class Database {
     //     this.participants = this.participants.filter(x => x !== p);
     // }
 
-    insertParticipantInEvent(e: Event, p: Participant): AsyncEvent | OnSiteEvent {
+    insertParticipantInEvent(e: Event<Participant>, p: Participant): AsyncEvent | OnSiteEvent {
         // exemplo de lógica simples:
         if (e instanceof AsyncEvent) {
             e.addParticipant(p);
@@ -100,8 +102,11 @@ export default class Database {
         return this.speakers;
     }
 
-    insertSpeakerInEvent(e: Event, s: Speaker): void {
+    insertSpeakerInEvent(e: Event<Participant>, s: Speaker): void {
         e.addSpeaker(s)
     }
 
+    setId(){
+        this.entity?.setId()
+    }
 }

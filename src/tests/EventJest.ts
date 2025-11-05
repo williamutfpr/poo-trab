@@ -1,23 +1,22 @@
+import { StatusEnum } from "../Enum/StatusEventEnum";
+import { TypeEventEnum } from "../Enum/TypeEventEnum";
+import Address from "../model/Address";
 import { AsyncEvent } from "../model/AsyncEvent";
 import { OnSiteEvent } from "../model/OnSiteEvent";
 import OrganizerService from "../service/OrganizerService";
-import { StatusEnum } from "../Enum/StatusEventEnum";
-import Address from "../model/Address";
-import { TypeEventEnum } from "../Enum/TypeEventEnum";
 
 export default class EventJest {
   public testEventCreate(org: OrganizerService): AsyncEvent | OnSiteEvent {
     const id = 1;
     const type = TypeEventEnum.EAD;
-    const name = "Workshop de TypeScript";
+    const name = "Workshoppp de TypeScript";
     const time = 120;
     const maxParticipants = 50;
     const field = "Programação";
     const status = StatusEnum.IP;
     const link = "https://meet.example.com";
 
-    const address = new Address("street", 0, "city", "state", "zip");
-
+    // Crie o evento que você quer testar
     const eventAsync = org.createEvent(
       id,
       type,
@@ -29,6 +28,8 @@ export default class EventJest {
       link
     );
 
+    const address = new Address("street", 0, "city", "state", "zip");
+    
     const eventOnSite = org.createEvent(
       id,
       type,
@@ -39,8 +40,10 @@ export default class EventJest {
       status,
       address
     );
+    
+    
+   // return eventOnSite;
 
-    // ✅ Retorne o evento que quer testar
     return eventAsync;
   }
 }

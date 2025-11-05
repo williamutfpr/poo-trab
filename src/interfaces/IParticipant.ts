@@ -15,7 +15,7 @@ export default interface IParticipant {
 
   
   subscribeInEvent(
-    e: Event,
+    e: Event<Participant>,
     p: Participant
   ): AsyncEvent | OnSiteEvent;
 

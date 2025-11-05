@@ -1,33 +1,16 @@
 import { randomInt } from "crypto";
+import Entity from "./Entity";
 
 
-export default class People {
-    id: number;
-    name: string;
+export default class People extends Entity {
+    
     cpf: string;
     mail: string;
 
     constructor(id: number, name: string, cpf: string, mail: string) {
-        this.id = id;
-        this.name = name;
+        super(id,name)
         this.cpf = cpf;
         this.mail = mail;
-    }
-
-    public getId(): number {
-        return this.id;
-    }
-
-    public static setId(): number {
-        return randomInt(1, 100000000);
-    }
-
-    public getName(): string {
-        return this.name;
-    }
-
-    public setName(name: string) {
-        this.name = name;
     }
 
     public getCpf(): string {
@@ -46,7 +29,4 @@ export default class People {
         this.mail = mail;
     }
 
-    public welcome(){
-        console.log("welcome")
-    }
 }

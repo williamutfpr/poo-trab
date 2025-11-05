@@ -52,7 +52,7 @@ export default class SpeakerView {
   private createOrganizer(): void {
     console.log("\n🎉 Creating New User:");
     console.log("===============================");
-    const id = Number(People.setId());
+    const id = Number(this.database.setId());
     const name = prompt('Participant name: ');
     const cpf = prompt('Insert your CPF, only numbers ');
     const mail = prompt('Insert your mail ');

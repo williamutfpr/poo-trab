@@ -8,6 +8,7 @@ import { AsyncEvent } from '../model/AsyncEvent';
 import { Event } from '../model/Event';
 import { TypeEventEnum } from '../Enum/TypeEventEnum';
 import Address from '../model/Address';
+import Participant from '../model/Participant';
 
 const prompt = promptSync();
 
@@ -137,7 +138,7 @@ export default class EventView {
                     console.log("2. in progress");
                     console.log("3. not started");
                     const statusOption = prompt("Choose a status option: ");
-                    let resultsStatus: Event[] = [];
+                    let resultsStatus: Event<Participant>[] = [];
 
                     if (statusOption === "1") {
                         resultsStatus = this.mainController.ec.searchEvent(StatusEnum.CP);
@@ -164,7 +165,7 @@ export default class EventView {
         }
     }
 
-    private printEvents(events: Event[]): void {
+    private printEvents(events: Event<Participant>[]): void {
         if (events.length === 0) {
             console.log("Nenhum evento encontrado.");
             return;

@@ -6,23 +6,23 @@ import Organizer from "./Organizer";
 import { TypeEventEnum } from "../Enum/TypeEventEnum";
 
 import { randomInt } from "crypto";
-import FailCreateEvent from "../Error/FailToListEvent";
+import FailCreateEvent from "../Error/FailEvent";
+import { PersonManager } from "./PeopleManager";
 
-//
-export abstract class Event {
+
+export abstract class Event<TParticipant extends Participant> { 
     private id: number;
     private type: TypeEventEnum;
     private name: string;
     private time: number;
     private maxParticipants: number;
 
-    private listP: Participant[];
-    private listS: Speaker[];
-    private listO: Organizer[];
+    public participants: PersonManager<TParticipant>;
+    public speakers: PersonManager<Speaker>;
+    public organizers: PersonManager<Organizer>;
 
     private field: string;
     private status: StatusEnum;
-
 
     constructor(
         id: number,
@@ -36,16 +36,16 @@ export abstract class Event {
         this.id = id;
         this.type = type;
         this.name = name;
-        this.time = time; // minutes
+        this.time = time; 
         this.maxParticipants = maxParticipants;
-        this.listP = [];
-        this.listS = [];
-        this.listO = [];
         this.field = field;
         this.status = status;
+
+        this.participants = new PersonManager<TParticipant>(this.maxParticipants);
+        this.speakers = new PersonManager<Speaker>();
+        this.organizers = new PersonManager<Organizer>();
     }
 
-    // --- id ---
     public getId(): number {
         return this.id;
     }
@@ -54,7 +54,6 @@ export abstract class Event {
         return randomInt(1, 100000000);
     }
 
-    // --- Types ---
     public getType(): TypeEventEnum {
         return this.type;
     }
@@ -62,7 +61,6 @@ export abstract class Event {
         this.type = type;
     }
 
-    // --- Name ---
     public getName(): string {
         return this.name;
     }
@@ -70,7 +68,6 @@ export abstract class Event {
         this.name = name;
     }
 
-    // --- Time ---
     public getTime(): number {
         return this.time;
     }
@@ -78,23 +75,18 @@ export abstract class Event {
         this.time = time;
     }
 
-    // --- Max Participants ---
     public getMaxParticipants(): number {
         return this.maxParticipants;
     }
     public setMaxParticipants(maxParticipants: number): void {
         this.maxParticipants = maxParticipants;
+        // Idealmente, você também atualizaria o 'maxSize' no PersonManager aqui.
     }
 
     public getCurrentParticipants(): number {
-        if (this.listP.length > 0) {
-            return this.listP.length;
-        } else {
-            throw new FailCreateEvent("Fail to list event")
-        }
+        return this.participants.getCount();
     }
 
-    // --- Field ---
     public getField(): string {
         return this.field;
     }
@@ -102,85 +94,52 @@ export abstract class Event {
         this.field = field;
     }
 
-    // --- Status ---
     public getStatus(): StatusEnum {
-        return this.status;
+         return this.status;
     }
     public setStatus(status: StatusEnum): void {
         this.status = status;
     }
 
 
-    // --- Participants ---
-    public getParticipants(): Participant[] {
-        return this.listP;
+    public getParticipants(): TParticipant[] {
+        return this.participants.getList();
     }
 
-    public addParticipant(p: Participant): boolean {
-        if (this.listP.length < this.maxParticipants && !this.listP.includes(p)) {
-            this.listP.push(p);
-            return true;
-        }
-        return false; // evento cheio ou já existe
+    public addParticipant(p: TParticipant): boolean {
+        return this.participants.add(p);
     }
 
-    public removeParticipant(p: Participant): boolean {
-        const index = this.listP.indexOf(p);
-        if (index !== -1) {
-            this.listP.splice(index, 1);
-            return true;
-        }
-        return false;
+    public removeParticipant(p: TParticipant): boolean {
+        return this.participants.remove(p);
     }
 
-    // --- Speakers ---
     public getSpeakers(): Speaker[] {
-        return this.listS;
+        return this.speakers.getList();
     }
 
     public addSpeaker(s: Speaker): boolean {
-        if (!this.listS.includes(s)) {
-            this.listS.push(s);
-            return true;
-        }
-        return false;
+        return this.speakers.add(s);
     }
 
     public removeSpeaker(s: Speaker): boolean {
-        const index = this.listS.indexOf(s);
-        if (index !== -1) {
-            this.listS.splice(index, 1);
-            return true;
-        }
-        return false;
+        return this.speakers.remove(s);
     }
 
-    // --- Organizers ---
     public getOrganizers(): Organizer[] {
-        return this.listO;
+        return this.organizers.getList();
     }
 
-    public Organizers(o: Organizer): boolean {
-        if (!this.listO.includes(o)) {
-            this.listO.push(o);
-            return true;
-        }
-        return false;
+    public addOrganizer(o: Organizer): boolean {
+        return this.organizers.add(o);
     }
 
     public removeOrganizers(o: Organizer): boolean {
-        const index = this.listO.indexOf(o);
-        if (index !== -1) {
-            this.listO.splice(index, 1);
-            return true;
-        }
-        return false;
+        return this.organizers.remove(o);
     }
 
-    // implementação abstrata
     public abstract getLocal(): string | Address;
 
-    // sobrecarga --
     public getTypeEvent() {
         console.log("hybrid event");
     }

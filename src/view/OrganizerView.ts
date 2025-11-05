@@ -2,6 +2,8 @@ import PromptSync from "prompt-sync";
 import MainController from "../controller/MainController";
 import Database from "../db/Database";
 import People from "../model/People";
+import Entity from "../model/Entity";
+import Organizer from "../model/Organizer";
 
 const prompt = PromptSync();
 
@@ -57,7 +59,7 @@ export default class OrganizerView {
   public createOrganizerMenu(): void {
     console.log("\n🎉 Creating New Organizer:");
     console.log("===============================");
-    const id = Number(People.setId());
+    const id = Number(this.database.setId());
     const name = prompt('Participant name: ');
     const cpf = prompt('Insert your CPF, only numbers: ');
     const mail = prompt('Insert your mail: ');

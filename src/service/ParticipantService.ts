@@ -31,7 +31,7 @@ export default class ParticipantService implements IParticipant {
   }
 
   public subscribeInEvent(
-    e: Event,
+    e: Event<Participant>,
     p: Participant
   ): AsyncEvent | OnSiteEvent {
     return this.db.insertParticipantInEvent(e, p);

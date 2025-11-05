@@ -26,7 +26,7 @@ export default class ParticipantController {
   }
 
   public subscibeInEvent(
-    e:Event,
+    e:Event<Participant>,
     p:Participant
   ) : AsyncEvent | OnSiteEvent
   {

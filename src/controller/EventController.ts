@@ -11,7 +11,7 @@ export default class EventController {
   constructor(private service: EventService) {}
 
   // --- Listagem ---
-  public listEvents(): Event[] {
+  public listEvents(): Event<Participant>[] {
     return this.service.listEvents();
   }
 
@@ -24,7 +24,7 @@ export default class EventController {
   }
 
   // --- Participants ---
-  public addParticipant(participant: Participant, event: Event): void {
+  public addParticipant(participant: Participant, event: Event<Participant>): void {
     this.service.addParticipant(participant, event);
   }
 
@@ -32,7 +32,7 @@ export default class EventController {
   //   this.service.removeParticipant(participant, event);
   // }
 
-  public searchEvent(option: StatusEnum | string): Event[] {
+  public searchEvent(option: StatusEnum | string): Event<Participant>[] {
   return this.service.searchEvent(option);
 }
 

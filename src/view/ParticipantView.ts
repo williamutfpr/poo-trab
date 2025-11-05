@@ -51,11 +51,11 @@ export default class ParticipantView {
     private createParticipantMenu(): void {
         console.log("\n🎉 Creating New User:");
         console.log("===============================");
-        const id = Number(People.setId());
+        const id = Number(this.database.setId());
         const name = prompt('Participant name: ');
         const cpf = prompt('Insert your CPF, only numbers ');
         const mail = prompt('Insert your mail ');
-        const enrollmentId = Number(People.setId());
+        const enrollmentId = Number(this.database.setId());
 
         const participant = this.mainController.pc.createParticipant(
             id,

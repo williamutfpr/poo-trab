@@ -9,6 +9,7 @@ import { TypeEventEnum } from "../Enum/TypeEventEnum";
 import { IOrganizer } from "../interfaces/IOrganizer";
 import { Event } from "../model/Event";
 import Speaker from "../model/Speaker";
+import Participant from "../model/Participant";
 
 export default class OrganizerService implements IOrganizer {
   private db = Database.getInstance();
@@ -59,9 +60,9 @@ export default class OrganizerService implements IOrganizer {
   }
 
   public addSpeakerInEvent(
-    event: Event,
+    event: Event<Participant>,
     speaker: Speaker
-  ): Event | Speaker {
+  ): Event<Participant> | Speaker {
     this.db.insertSpeakerInEvent(event, speaker);
     return event;
   }
